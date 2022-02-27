@@ -1,5 +1,5 @@
 ---
-title: "First_post"
+title: "计算机网络｜Computer Network and the Internet"
 subtitle: ""
 date: 2022-02-27T10:54:15+08:00
 draft: false
@@ -12,9 +12,9 @@ comment: false
 weight: 0
 
 tags:
-- draft
+- 计算机网络
 categories:
-- draft
+- 有求必应屋
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
