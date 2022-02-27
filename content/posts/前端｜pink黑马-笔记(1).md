@@ -96,11 +96,8 @@ seo:
 
 - 浏览器内核-渲染引擎：负责读取网页，整理讯息，计算网页的显示方式并显示网页
 
-{{<md>}}
-<div align="center">
-<img src="https://s2.loli.net/2022/02/01/k4BlQIo7NfZsUpA.jpg" alt="01" >
-</div>
-{{</md>}}
+![](https://s2.loli.net/2022/02/01/k4BlQIo7NfZsUpA.jpg)
+
 
 <br>
 
@@ -118,11 +115,8 @@ seo:
 
 - 包括结构structure、表现presentation和行为behavior三个方面
 
-{{<md>}}
-<div align="center">
-<img src="https://s2.loli.net/2022/02/01/YfUpjnOKM7yZRNA.jpg" alt="02" >
-</div>
-{{</md>}}
+![](https://s2.loli.net/2022/02/01/YfUpjnOKM7yZRNA.jpg)
+
 
 <br>
 
