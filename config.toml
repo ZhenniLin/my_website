@@ -123,11 +123,11 @@ theme = "FixIt"
     # 日期格式（月和日）
     dateFormat = "01-02"
     # RSS 文章数目
-    rss = 10
+    rss = 20
     #  最近更新文章设置
     [params.section.recentlyUpdated]
-      enable = false
-      rss = false
+      enable = true
+      rss = true
       days = 30
       maxCount = 10
 
@@ -138,12 +138,12 @@ theme = "FixIt"
     # 日期格式（月和日）
     dateFormat = "01-02"
     # RSS 文章数目
-    rss = 10
+    rss = 20
 
   # 主页配置
   [params.home]
     #  RSS 文章数目
-    rss = 10
+    rss = 20
     # 主页个人信息
     [params.home.profile]
       enable = true
@@ -152,7 +152,7 @@ theme = "FixIt"
       # Gravatar 邮箱，用于优先在主页显示的头像
       gravatarEmail = ""
       # 主页显示头像的 URL
-      avatarURL = "https://tva1.sinaimg.cn/large/e6c9d24egy1gzrzl2v1e2j205c05ct8r.jpg"
+      avatarURL = "https://s2.loli.net/2022/02/27/8GojZsqyrV3gD14.png"
       #  主页显示的网站标题（支持 HTML 格式）
       title = "YingLin 储物柜"
       # 主页显示的网站副标题
