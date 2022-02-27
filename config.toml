@@ -39,7 +39,7 @@ theme = "FixIt"
     # 是否隐藏网站图标资源链接
     noFavicon = false
     # 更现代的 SVG 网站图标，可替代旧的 .png 和 .ico 文件
-    svgFavicon = "https://tva1.sinaimg.cn/large/e6c9d24egy1gzrzl2v1e2j205c05ct8r.jpg"
+    svgFavicon = "static/favicon.ico"
     # Safari 图标颜色
     iconColor = "#5bbad5"
     # Windows v8-10 磁贴颜色
