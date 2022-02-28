@@ -143,6 +143,7 @@ defaults write com.apple.BluetoothAudioAgent "Apple Initial Bitpool Min (editabl
 defaults write com.apple.BluetoothAudioAgent "Apple Initial Bitpool (editable)" 35
 
 ```
+<br>
 
 ## To be continue
 
