@@ -214,6 +214,8 @@ defaults write com.apple.BluetoothAudioAgent "Apple Initial Bitpool (editable)" 
 
 看剧之前朋友已经友情提示不要太关注一些剧情上的bug，就满足一下B级片爽感即可。但是！为嘛男二女二这么好磕，我快磕疯了，天呐这就是我想象中的剧情，已经巨久没有这种磕cp的幸福感，是谁睡前刷刷cp向视频满足得嘴角上扬： [传送门](https://www.youtube.com/watch?v=GhaRmgqs_0w)
 
+“They have overflowing chemistry” （观众的眼睛是雪亮的，情感联结度是高敏的555
+
 <br>
 
 
