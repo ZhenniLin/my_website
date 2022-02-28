@@ -114,7 +114,7 @@ I have to believe that one or the combination caused the clicking.  Good Luck!
 
 **3.mac 耳机连接问题**
 
-问题：耳机型号为二代，出现了和mac连接断续问题，主要表现为连接状态正常，但是声音一直断断续续
+问题：耳机型号为二代，出现了和mac连接断续问题，主要表现为连接状态正常但声音一直断断续续
 
 解决方法：直接三个办法全都实施一遍，问题解决 [点击这里](https://juejin.cn/post/7026548304146071582)
 
@@ -143,6 +143,8 @@ defaults write com.apple.BluetoothAudioAgent "Apple Initial Bitpool Min (editabl
 defaults write com.apple.BluetoothAudioAgent "Apple Initial Bitpool (editable)" 35
 
 ```
+
+## To be continue
 
 
 
