@@ -41,6 +41,7 @@ seo:
 
 一年内跑了六次Ginus Bar，不知道该说Apple产品小毛病多还是Apple售后做得太过细致入微，总之每次售后的体验感基本可以抹除我对它的信任危机，自己也摸索出了几个自我修缮的小tips，顺便分享售后 Carl Chen 告诉我的几个（省钱）方案
 
+<br>
 
 **1.mac 触控版问题**
 
@@ -100,6 +101,8 @@ I have to believe that one or the combination caused the clicking.  Good Luck!
 
 ```
 
+<br>
+
 **2.mac 触控版方案**
 
 这里巨感谢我的售后 Carl, 提供了好几个方案能够在资金和时间上进行选择，短期方案采取plan A，长期方案应该是plan C, 但是我的这个问题在用了一天plan A之后又自行解决了 (莫名其妙的)
@@ -111,6 +114,8 @@ I have to believe that one or the combination caused the clicking.  Good Luck!
 - plan C : 选择电池更换，因为我的电池基本快接近能够更换的临界点了，所以再狂用一两个月，基本就能达到 Apple 电池的要求了，Carl的意思是，电池更换能通同步更换掉键盘/触控板（不确定有没有记错），价格为1600mop左右 [点击这里](https://www.apple.com.cn/batteries/service-and-recycling/)
 
 - plan D : 全换键盘（触控板就可以同步更换），价格为3500mop左右
+
+<br>
 
 **3.mac 耳机连接问题**
 
@@ -157,7 +162,7 @@ defaults write com.apple.BluetoothAudioAgent "Apple Initial Bitpool (editable)" 
 
 <br>
 
-2.反复审视对数学的态度
+**2.反复审视对数学的态度**
 
 可能也是因为在补CS相关的内容，慢慢地接受与开拓出了一个新的视野与实践领域，发觉自己对 “数学” 的心态发生了太多的改变
 
@@ -171,7 +176,7 @@ defaults write com.apple.BluetoothAudioAgent "Apple Initial Bitpool (editable)" 
 
 <br>
 
-3.只有影院能停止我快跳的习惯了
+**3.只有影院能停止我快跳的习惯了**
 
 有段时间不太理解为什么室友看剧喜欢开倍速，后来发现自己看剧已经无法克制跳进度条的冲动了，即便我知道或许就在这一秒的停滞里，景深的调度与人物的微表情传达能够让我更加领会到这个镜头的丰富意涵，但我还是选择了跳进度条....
 
