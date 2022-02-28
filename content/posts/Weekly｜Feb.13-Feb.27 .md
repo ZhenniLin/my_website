@@ -42,7 +42,7 @@ seo:
 一年内跑了六次Ginus Bar，不知道该说Apple产品小毛病多还是Apple售后做得太过细致入微，总之每次售后的体验感基本可以抹除我对它的信任危机，自己也摸索出了几个自我修缮的小tips，顺便分享售后 Carl Chen 告诉我的几个（省钱）方案
 
 
-1.mac 触控版问题
+**1.mac 触控版问题**
 
 问题：触控板的按压声音不太对劲，从原来的闷响变成了颗粒响，听起来会非常的annoying / 还是要前期说明，这个问题发生前我的小侄女不小心撒了水在我的键盘上（非大量）
 
@@ -74,27 +74,33 @@ Hope it helps
 
 //----第二个方法----
 
-I had seemingly the same issue for quite some time. Strange clicking noice like something is trap inside/beneath the trackpad, which goes away after some hard presses, but will come back and haunt me soon enough.
+I had seemingly the same issue for quite some time. S
+trange clicking noice like something is trap inside/beneath the trackpad, 
+which goes away after some hard presses, but will come back and haunt me soon enough.
 
-I just tried to use the corners of an A4 paper, which is thin and strong enough, and stick it into the 4 gaps/sides, and then drag along the  gaps/sides. Dusts and stuffs (and even one hair) are cleared out, and the click sounds seem to return to normal.
+I just tried to use the corners of an A4 paper, which is thin and strong enough, 
+and stick it into the 4 gaps/sides, and then drag along the  gaps/sides. 
+Dusts and stuffs (and even one hair) are cleared out, and the click sounds seem to return to normal.
 
 Maybe this helps.
 
 //----第三个方法----本质上跟第二个方法相似，但不建议小白拧螺丝
 
-Hey all I read all the comments.  This was happening to me too.  I only did two things and I don't have the issue at all anymore.  
+Hey all I read all the comments.  This was happening to me too.  
+I only did two things and I don't have the issue at all anymore.  
 
 1.  Use compressed canned air and blow out any particles in any of the ports or holes all the way around the laptop
 
 2. Flip the laptop over and tighten the screws NOT ALOT only hand tight, I used an eye glass screwdriver.
 
-Works great.  All the screws were lose and a ton of dust flew out.  I have to believe that one or the combination caused the clicking.  Good Luck!
+Works great.  All the screws were lose and a ton of dust flew out.  
+I have to believe that one or the combination caused the clicking.  Good Luck!
 
 //尝试了这几个方法后，问题貌似解决，持续了2-3天问题重新出现就选择去Genius Bar
 
 ```
 
-2.mac 触控版方案
+**2.mac 触控版方案**
 
 这里巨感谢我的售后 Carl, 提供了好几个方案能够在资金和时间上进行选择，短期方案采取plan A，长期方案应该是plan C, 但是我的这个问题在用了一天plan A之后又自行解决了 (莫名其妙的)
 
@@ -106,7 +112,7 @@ Works great.  All the screws were lose and a ton of dust flew out.  I have to be
 
 - plan D : 全换键盘（触控板就可以同步更换），价格为3500mop左右
 
-3.mac 耳机连接问题
+**3.mac 耳机连接问题**
 
 问题：耳机型号为二代，出现了和mac连接断续问题，主要表现为连接状态正常，但是声音一直断断续续
 
