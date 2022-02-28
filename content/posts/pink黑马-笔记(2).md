@@ -1,5 +1,5 @@
 ---
-title: "前端｜pink黑马-笔记(2)"
+title: "pink黑马-笔记(2)"
 subtitle: ""
 date: 2022-02-27T10:54:15+08:00
 draft: false
@@ -14,7 +14,7 @@ weight: 0
 tags:
 - CSS
 categories:
-- 有求必应屋
+- 前端
 
 hiddenFromHomePage: false
 hiddenFromSearch: false

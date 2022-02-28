@@ -1,5 +1,5 @@
 ---
-title: "计算机网络｜Computer Network and the Internet"
+title: "Computer Network and the Internet"
 subtitle: ""
 date: 2022-02-27T10:54:15+08:00
 draft: false
@@ -14,7 +14,7 @@ weight: 0
 tags:
 - 计算机网络
 categories:
-- 有求必应屋
+- 计算机网络
 
 hiddenFromHomePage: false
 hiddenFromSearch: false

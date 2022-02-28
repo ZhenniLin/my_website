@@ -1,5 +1,5 @@
 ---
-title: "后端｜java-第一阶段-面向对象(基础)"
+title: "Java-第一阶段-面向对象(基础)"
 subtitle: ""
 date: 2022-02-27T10:54:15+08:00
 draft: false
@@ -14,7 +14,7 @@ weight: 0
 tags:
 - Java
 categories:
-- 有求必应屋
+- 后端
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
