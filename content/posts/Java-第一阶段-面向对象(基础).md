@@ -43,6 +43,8 @@ seo:
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24egy1gzq0a3p0ruj215t0lfafg.jpg)
 
+<br>
+
 ### 快速入门
 
 ```java
@@ -96,7 +98,7 @@ public class Pre {
 - 对象是具体的，实际的，代表一个具体事物，即 是实例
 - 类是对象的模版，对象是类的一个个体，对应一个实例
 
-
+<br>
 
 ### 对象内存布局
 
@@ -110,6 +112,7 @@ cat.color = "白色";
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24egy1gzq0ack7gwj20zg0le0v8.jpg)
 
+<br>
 
 ### 属性概念
 
@@ -131,7 +134,7 @@ class Cat {
 
 ```
 
-
+<br>
 
 ### 属性的注意事项和细节
 
@@ -177,7 +180,7 @@ class Person {
   
 ```
 
-
+<br>
 
 ### 创建对象访问属性
 
@@ -193,13 +196,13 @@ cat = new Cat(); //创建
 
 Cat cat = new Cat();
 
-
+<br>
 
 ### 对象分配机制
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24egy1gzfq6o37snj21is0m3dlo.jpg)
 
-
+<br>
 
 ### 对象创建过程
 
@@ -212,13 +215,13 @@ Java内存的结构分析
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24egy1gzfqfs1rubj20x80ckdj2.jpg)
 
-
+<br>
 
 ### 对象机制练习
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24egy1gzfqnfbt3gj21hs0ma79o.jpg)
 
-
+<br>
 
 
 ## 成员方法
@@ -303,7 +306,7 @@ class Person {
 
 ```
 
-
+<br>
 
 ### 方法的调用机制原理
 
@@ -311,7 +314,7 @@ class Person {
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24egy1gzhjrfztmej21hp0mk43g.jpg)
 
-
+<br>
 
 ### 方法的妙用
 
@@ -352,7 +355,7 @@ class Mytools {
 
 ```
 
-
+<br>
 
 ### 成员方法的定义
 
@@ -371,7 +374,7 @@ public 返回数据类型 方法名（形参列表..）{//方法体
 - 方法主体：表示为了实现某一功能代码块
 - return语句不是必须的 - 有具体的返回数据类型，就需要写return / 如果结果直接在方法里输出则不需要return
 
-
+<br>
 
 ### 方法使用细节
 
@@ -519,7 +522,7 @@ class B {
 
 - 特别说明：跨类的方法调用和方法的修饰符相关（先暂时提及）
 
-
+<br>
 
 ### 方法练习题1
 
@@ -596,8 +599,7 @@ class AA {
 
 ```
 
-
-
+<br>
 
 
 ## 成员方法传参机制
@@ -646,7 +648,7 @@ class AA {
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24egy1gzilrx6vvoj20uq0rd42n.jpg)
 
-
+<br>
 
 ### 引用数据类型的传参机制
 
@@ -803,14 +805,15 @@ class B {
 
     }
 }
-
+//p在哪里调用，就找那个栈里的p，这个情况下是在main方法栈中调用，就找main方法里的p
+//新创建出来的对象没有调用被当作垃圾被回收
 //输出还是10
 
 ```
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24egy1gzio50cnrqj20vw0m0wi6.jpg)
 
-
+<br>
 
 ### 练习题
 
@@ -893,13 +896,14 @@ class MyTools {
 ![](https://tva1.sinaimg.cn/large/e6c9d24egy1gzipg40a9wj20w00mgtby.jpg)
 
 
-
+<br>
 
 
 ## 方法递归调用
 
 简单的说：递归就是方法自己调用自己，每次调用时传入不同的变量，递归有助于编程者解决复杂问题，同时可以让代码变得简洁
 
+<br>
 
 ### 递归能解决什么问题？
 
@@ -909,6 +913,7 @@ class MyTools {
 
 3.将用栈解决的问题 --> 递归代码比较简洁
 
+<br>
 
 ### 递归执行机制
 
@@ -969,7 +974,7 @@ class T {
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24egy1gziwkdck3cj20fo0modhp.jpg)
 
-
+<br>
 
 ### 递归重要规则
 
@@ -983,7 +988,7 @@ class T {
 
 5.当一个方法执行完毕，或者遇到return，就会返回，遵守谁调用，就将结果返回给谁，同时当方法执行完毕或返回时，该方法也就执行完毕
 
-
+<br>
 
 ### 课堂练习
 
@@ -1078,7 +1083,7 @@ class T {
 
 ```
 
-
+<br>
 
 ### 迷宫问题
 
@@ -1179,7 +1184,7 @@ class T {
 
 ```
 
-
+<br>
 
 ### 汉诺塔问题
 
@@ -1217,7 +1222,7 @@ class Tower {
 
 ```
 
-
+<br>
 
 ### 八皇后问题
 
@@ -1233,7 +1238,7 @@ class Tower {
 
 5.然后回头继续第一个皇后放第二列，后面继续循环执行1，2，3，4的步骤
 
-
+<br>
 
 ## 方法重载 OverLoad
 
@@ -1246,6 +1251,7 @@ class Tower {
 - 减轻了起名的麻烦
 - 减轻了记名的麻烦
 
+<br>
 
 ### 方法重载快速入门
 
@@ -1283,7 +1289,7 @@ class MyCalculate {
 
 ```
 
-
+<br>
 
 ### 方法重载细节
 
@@ -1317,7 +1323,7 @@ public void calculate(int n1, int n2) { //没有构成方法重载, 还是方法
 
 ```
 
-
+<br>
 
 ### 重载课堂练习
 
@@ -1432,7 +1438,7 @@ class Methods {
 
 ```
 
-
+<br>
 
 ## 可变参数
 
@@ -1490,7 +1496,7 @@ class HspMethod {
 
 ```
 
-
+<br>
 
 ### 注意事项和使用细节
 
@@ -1536,7 +1542,7 @@ class T {
 
 5.一个形参列表中只能出现一个可变参数
 
-
+<br>
 
 ### 可变参数练习
 
@@ -1577,7 +1583,7 @@ class HspMethod {
 
 ```
 
-
+<br>
 
 ## 作用域
 
@@ -1670,7 +1676,7 @@ class Cat {
 
 ```
 
-
+<br>
 
 ### 作用域的注意事项和使用细节
 
@@ -1798,7 +1804,7 @@ class Person {
 
 局部变量不可以加修饰符
 
-
+<br>
 
 ## 构造方法/构造器
 
@@ -1827,6 +1833,8 @@ class Person {
 - 方法名和类名相同
 - 没有返回值
 - 在创建对象时，系统会自动的调用该类的构造器完成对对象的初始化
+
+<br>
 
 #### 快速入门
 
@@ -1862,6 +1870,8 @@ class Person {
 }
 
 ```
+
+<br>
 
 ### 注意事项和使用细节
 
@@ -1906,6 +1916,8 @@ class Person {
 4.构造器是完成对象的初始化，并不是创建对象
 
 5.在创建对象时，系统自动的调用该类的构造方法
+
+<br>
 
 ### 构造器使用细节
 
@@ -1972,6 +1984,8 @@ class Dog {
 
 ```
 
+<br>
+
 ### 构造器课堂练习
 
 在前面定义的Person类中添加两个构造器：
@@ -2025,7 +2039,7 @@ class Person {
 
 ```
 
-
+<br>
 
 ## 对象创建的流程分析
 
@@ -2047,14 +2061,16 @@ class Person {
 
 4.把对象在堆中的地址，返回给p(p是对象名/对象的引用)
 
+<br>
+
 ### 类定义的完善
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24egy1gzm5le49txj212o0hf40n.jpg)
 
+<br>
 
 
 ## this
-
 
 ### this 入门
 
@@ -2090,6 +2106,8 @@ class Dog {
 }
 
 ```
+
+<br>
 
 ### this 本质
 
@@ -2132,13 +2150,13 @@ class Dog {
 
 ```
 
-
+<br>
 
 ### this小结
 
 this小结：哪个对象调用，this就代表哪个对象
 
-
+<br>
 
 ### this 使用细节
 
@@ -2229,7 +2247,7 @@ class T {
 
 5.this不能在类定义的外部使用，只能在类定义的方法中使用
 
-
+<br>
 
 ### this 课堂小结
 
@@ -2267,6 +2285,7 @@ class Person {
 
 ```
 
+<br>
 
 ## 本章作业
 
@@ -2321,6 +2340,7 @@ class A01 {
 
 ```
 
+<br>
 
 ### 第二题
 
@@ -2372,6 +2392,7 @@ class A02 {
 
 ```
 
+<br>
 
 ### 第三题
 
@@ -2426,7 +2447,7 @@ class Book {
 
 ```
 
-
+<br>
 
 ### 第四题
 
@@ -2474,7 +2495,7 @@ class A03 {
 
 ```
 
-
+<br>
 
 ### 第五题
 
@@ -2514,6 +2535,8 @@ class Circle {
 }
 
 ```
+
+<br>
 
 ### 第六题
 
@@ -2575,10 +2598,13 @@ class Cale {
 
 ```
 
+<br>
+
 ### 第七题
 
 设计一个Dog类，有名字、颜色和年龄属性，定义输出方法show()显示其信息，并创建对象，进行测试 【提示this.属性】
 
+<br>
 
 ### 第八题
 
@@ -2610,6 +2636,7 @@ class Test {
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24egy1gzmlt315zvj21im0r2tf3.jpg)
 
+<br>
 
 ### 第九题
 
@@ -2656,6 +2683,8 @@ class Music {
 
 ```
 
+<br>
+
 ### 第十题
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24egy1gzmmj5f4ilj21im0ri0xq.jpg)
@@ -2690,12 +2719,15 @@ class Test {
 
 ```
 
+<br>
+
 ### 第十一题
 
 在测试方法中，调用method方法，代码如下，编译正确，试写出method方法的定义形式，调用语句为：System.out.println(method(method(10.0,20.0),100))
 
 public double method(double d1, double d2) {...}
 
+<br>
 
 ### 第十二题
 
@@ -2738,6 +2770,8 @@ class Employee {
 }
 
 ```
+
+<br>
 
 ### 第十三题
 
@@ -2806,6 +2840,8 @@ class PassObject {
 }
 
 ```
+
+<br>
 
 ### 第十四题
 
