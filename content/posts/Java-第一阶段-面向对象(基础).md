@@ -5,7 +5,7 @@ date: 2022-02-27T10:54:15+08:00
 draft: false
 author: ""
 authorLink: ""
-description: ""
+description: "既是难点也是重点的模块"
 keywords: ""
 license: ""
 comment: false
@@ -36,6 +36,8 @@ seo:
 
 # See details front matter: /theme-documentation-content/#front-matter
 ---
+
+<!--more-->
 
 ## 类与对象
 
