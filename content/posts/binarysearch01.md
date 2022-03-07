@@ -39,15 +39,12 @@ seo:
 
 <!--more-->
 
-## binary search
 
-<br>
+## binary search
 
 > 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
 
  [参考](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.md) 
-
-<br>
 
 ### 左闭右闭情况
 
@@ -83,13 +80,11 @@ class Solution {
 
 ```
 
-<br>
 
 
 ### 左闭右开情况
 
 ```java
-
 class Solution {
     public int search(int[] nums, int target) {
         int left = 0, right = nums.length;
@@ -108,7 +103,7 @@ class Solution {
 
 ```
 
-<br>
+
 
 ### 疑问
 
@@ -122,7 +117,6 @@ class Solution {
 - 第二种情况 - 因为left == right的时候，在[left, right)是无效的空间，所以只使用 < 
 - 因为对于左闭右开的区间 `[2, 2)` 这种数值是无意义的， 所以当 `r = l` 的时候， 就该结束循环了， 所以只有在 `l < r` 才继续循环
 - 因为对于左闭右闭的区间 [2, 2] 这种数值是有意义的（包含元素 2）， 所以当 r = l 的时候， 还有一个元素应该去查找， 所以 l <= r 继续循环
-
 - 同样参考 [“循环不变量”](https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-de-xun-huan-bu-bian-liang-zhi-yao-/)
 
 3.为什么第一种情况target right 的下标值是 nums.length-1 而第二种则是 nums.length
@@ -130,13 +124,13 @@ class Solution {
 - 参考  [“循环不变量”](https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-de-xun-huan-bu-bian-liang-zhi-yao-/)
 - 图解
 
-<br>
+
 
 
 
 ## Related questions 
 
-<br>
+
 
 ### Search-insert-position
 
@@ -144,10 +138,7 @@ class Solution {
 
  [参考](https://programmercarl.com/0035.%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE.html)
 
-<br>
-
 ```java
-
 //暴力解法
 class Solution {
     public int searchInsert(int[] nums, int target) {
@@ -168,7 +159,6 @@ class Solution {
 ```
 
 ```java
-
 
 //左闭右闭解法
 class Solution {
@@ -197,7 +187,6 @@ class Solution {
 
 ```java
 
-
 //左闭右开解法
 class Solution {
             //目的
@@ -223,7 +212,7 @@ class Solution {
 
 ```
 
-<br>
+
 
 ### Search-for-range
 
@@ -234,7 +223,6 @@ class Solution {
 思路：分三块 - 主接收块 / 确定左边界块 / 确定右边界块 - 左边界块用 `num[mid] > target` 来促使往左边找，右边界块用 `num[mid] < target` 来促使从右边开始找
 
 ```java
-
 class Solution {
     public int[] searchRange(int[] nums, int target) {
         int n = nums.length;
@@ -280,8 +268,6 @@ class Solution {
 }
 
 ```
-<br>
-
 
 
 
