@@ -5,7 +5,7 @@ date: 2022-03-07T10:54:15+08:00
 draft: false
 author: ""
 authorLink: ""
-description: "开始刷题"
+description: "开始刷题!"
 keywords: ""
 license: ""
 comment: false
@@ -40,8 +40,7 @@ seo:
 
 ## binary search
 
-<br
->
+<br>
 
 > 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
 
