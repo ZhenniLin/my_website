@@ -1,5 +1,5 @@
 ---
-title: "leetcode|array|binary search"
+title: "leetcode｜array｜binary search"
 subtitle: ""
 date: 2022-03-07T10:54:15+08:00
 draft: false
@@ -39,12 +39,15 @@ seo:
 
 <!--more-->
 
+<br>
 
 ## binary search
 
 > 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
 
  [参考](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.md) 
+
+<br>
 
 ### 左闭右闭情况
 
@@ -80,7 +83,7 @@ class Solution {
 
 ```
 
-
+<br>
 
 ### 左闭右开情况
 
@@ -103,6 +106,7 @@ class Solution {
 
 ```
 
+<br>
 
 
 ### 疑问
@@ -125,18 +129,19 @@ class Solution {
 - 图解
 
 
-
-
+<br>
 
 ## Related questions 
 
-
+<br>
 
 ### Search-insert-position
 
 > 给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。 - 三种写法
 
  [参考](https://programmercarl.com/0035.%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE.html)
+
+<br>
 
 ```java
 //暴力解法
@@ -212,7 +217,7 @@ class Solution {
 
 ```
 
-
+<br>
 
 ### Search-for-range
 
@@ -221,6 +226,8 @@ class Solution {
  [参考](https://www.youtube.com/watch?v=R3HkgT2m_wg)
 
 思路：分三块 - 主接收块 / 确定左边界块 / 确定右边界块 - 左边界块用 `num[mid] > target` 来促使往左边找，右边界块用 `num[mid] < target` 来促使从右边开始找
+
+<br>
 
 ```java
 class Solution {
