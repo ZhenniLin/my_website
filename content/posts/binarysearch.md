@@ -37,6 +37,7 @@ seo:
 # See details front matter: /theme-documentation-content/#front-matter
 ---
 
+<!--more-->
 
 ## binary search
 
