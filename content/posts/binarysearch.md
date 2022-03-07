@@ -1,5 +1,5 @@
 ---
-title: "leetcode - array - binary search"
+title: "leetcode|array|binary search"
 subtitle: ""
 date: 2022-03-07T10:54:15+08:00
 draft: false
