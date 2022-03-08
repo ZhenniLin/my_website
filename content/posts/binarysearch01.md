@@ -279,6 +279,63 @@ class Solution {
 
 #### 疑问
 
-1.为什么是 `nums[mid] >= target` 和 `nums[mid] <= target`
+1.为什么是 `nums[mid] >= target` 和 `nums[mid] <= target` (看图解，理清楚推导，因为我们要取的是边界，如果有相同的值在中间，不这样操作无法确定到边界)
+
+{{<md>}}
+<div align="center">
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h01hi0v70jj21010u077q.jpg" alt="疑问" >
+</div>
+{{</md>}}
+
+<br>
+
+### #74. Search a 2D Matrix
+
+> 编写一个高效的算法来判断 m x n 矩阵中，是否存在一个目标值。该矩阵具有如下特性：
+>
+> - 每行中的整数从左到右按升序排列。
+> - 每行的第一个整数大于前一行的最后一个整数。
+
+[参考](https://www.youtube.com/watch?v=tSrhtRn9dDM)
+
+```java
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if (matrix == null || matrix.length ==0 ) {
+            return false;
+        }
+
+        int m = matrix.length; //表示总行数
+        int n = matrix[0].length; //表示总列数
+
+        int lo = 0;
+        int hi = m * n - 1;
+
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (matrix[mid / n][mid % n] > target) {
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+
+            if (matrix[mid / n][mid % n] == target) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+```
+
+<br>
+
+
+
+
+
+
+
 
 
