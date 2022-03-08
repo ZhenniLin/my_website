@@ -275,6 +275,10 @@ class Solution {
 }
 
 ```
+<br>
 
+#### 疑问
+
+1.为什么是 `nums[mid] >= target` 和 `nums[mid] <= target`
 
 

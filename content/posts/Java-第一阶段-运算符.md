@@ -5,7 +5,7 @@ date: 2022-02-27T10:54:15+08:00
 draft: false
 author: ""
 authorLink: ""
-description: ""
+description: "各类运算符查典"
 keywords: ""
 license: ""
 comment: false
@@ -36,6 +36,8 @@ seo:
 
 # See details front matter: /theme-documentation-content/#front-matter
 ---
+
+<!--more-->
 
 ## 算术运算符
 

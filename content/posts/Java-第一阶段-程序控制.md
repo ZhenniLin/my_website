@@ -5,7 +5,7 @@ date: 2022-02-27T10:54:15+08:00
 draft: false
 author: ""
 authorLink: ""
-description: ""
+description: "各类语句关键字要掌握"
 keywords: ""
 license: ""
 comment: false
@@ -37,6 +37,7 @@ seo:
 # See details front matter: /theme-documentation-content/#front-matter
 ---
 
+<!--more-->
 
 在程序中，程序运行的流程控制决定程序是如何执行的，是我们必须掌握的，主要有三大流程控制语句
 
