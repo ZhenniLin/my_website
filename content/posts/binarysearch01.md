@@ -280,12 +280,17 @@ class Solution {
 #### 疑问
 
 1.为什么是 `nums[mid] >= target` 和 `nums[mid] <= target` (看图解，理清楚推导，因为我们要取的是边界，如果有相同的值在中间，不这样操作无法确定到边界)
+<br>
 
 {{<md>}}
 <div align="center">
 <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h01hi0v70jj21010u077q.jpg" alt="疑问" >
 </div>
 {{</md>}}
+
+<br>
+
+{{< figure src="https://tva1.sinaimg.cn/large/e6c9d24egy1h01hi0v70jj21010u077q.jpg" width="40%" >}}
 
 <br>
 
