@@ -42,7 +42,7 @@ seo:
 
 ## Netlogo 工具
 
-
+<br>
 
 Mac 推荐使用 6.2.2 版本
 
@@ -50,9 +50,11 @@ Mac 推荐使用 6.2.2 版本
 
 [NetLogo Home Page](https://ccl.northwestern.edu/netlogo/)
 
-[NetLogo 6.2.2 User Manual](https://ccl.northwestern.edu/netlogo/docs/)
+[NetLogo 6.2.2 User Manual]((https://ccl.northwestern.edu/netlogo/docs/))
 
 [Programming Guide](https://ccl.northwestern.edu/netlogo/docs/programming.html)
+
+[Interface Tab Guide](https://ccl.northwestern.edu/netlogo/docs/interfacetab.html#plots)
 
 [NetLogo Dictionary](http://ccl.northwestern.edu/netlogo/docs/index2.html)
 
@@ -552,14 +554,18 @@ end
 
 - Each value in the list can be any type of value: a number, or a string, an agent or agentset, or even another list.
 
-1.Constant lists
+<br>
+
+#### Constant lists
 
 - `set mylist [2 4 6 8]` 
 - the individual values are separated by spaces
 - You can make lists that contain numbers and strings this way, as well as lists within lists, for example `[[2 4] [3 5]]`
 - The empty list is written by putting nothing between the brackets, like this: `[]`
 
-2.Building list on the fly 
+<br>
+
+#### Building list on the fly 
 
 - If you want to make a list in which the values are determined by reporters, as opposed to being a series of constants, use the [`list`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#list) reporter. The [`list`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#list) reporter accepts two other reporters, runs them, and reports the results as a list.
 
@@ -576,23 +582,2435 @@ end
 
 - You can combine two or more lists using the [`sentence`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#sentence) reporter, which concatenates lists by combining their contents into a single, larger list. Like [`list`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#list), [`sentence`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#sentence) normally takes two inputs, but can accept any number of inputs if the call is surrounded by parentheses.
 
-3.Changing list items
+<br>
 
-4.Iterating over lists
+#### Changing list items
 
-5.Varing number of inputs
+- If you want the new list to replace the old list, use [`set`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#set).
 
-6.Lists of agents
+  ```
+  set mylist [2 7 5 Bob [3 0 -2]]
+  ; mylist is now [2 7 5 Bob [3 0 -2]]
+  set mylist replace-item 2 mylist 10 
+  ; mylist is now [2 7 10 Bob [3 0 -2]] / 2是指的序列数
+  ```
 
-7.Asking a list of agents
+- add an item - to the end of a list -  use the [`lput`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#lput) reporter
 
-8.Performance of lists
+  ```
+  set mylist lput 42 mylist
+  ; mylist is now [2 7 10 Bob [3 0 -2] 42]
+  ```
+
+- But what if you changed your mind? -  The [`but-last`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#but-first-and-last) (`bl` for short) reporter reports all the list items but the last
+
+  ```
+  set mylist but-last mylist
+  ; mylist is now [2 7 10 Bob [3 0 -2]]
+  ```
+
+- Get rid of item 0, the 2 at the begining of the list
+
+  ```
+  set mylist but-first mylist
+  ; mylist is now [7 10 Bob [3 0 -2]]
+  ```
+
+- the [`replace-item`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#replace-item) reporter can be nested to change the list-within-a-list
+
+  ```
+  set mylist (replace-item 3 mylist
+                    (replace-item 2 (item 3 mylist) 9))
+  ; mylist is now [7 10 Bob [3 0 9]]
+  ```
+
+<br>
+
+#### Iterating over lists
+
+- If you want to do some operation on each item in a list in turn, the [`foreach`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#foreach) command and the [`map`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#map) reporter may be helpful.
+
+  - [`foreach`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#foreach) is used to run a command or commands on each item in a list
+  - 组成 - input list + a command name / block of commands
+  - In the block, the variable `n` holds the current value from the input list - 可以自己命名
+
+  ```
+  foreach [1 2 3] show
+  => 1
+  => 2
+  => 3
+  foreach [2 4 6]
+    [ n -> crt n
+      show (word "created " n " turtles") ]
+  => created 2 turtles
+  => created 4 turtles
+  => created 6 turtles
+  ```
+
+  ```
+  foreach [1 2 3] [ steps -> ask turtles [ fd steps ] ]
+  ;; turtles move forward 6 patches
+  
+  foreach [true false true true] [
+  	should-move? -> ask turtles [ 
+  		if should-move? [ fd 1 ] 
+  	] 
+  ]
+  ;; turtles move forward 3 patches
+  ```
+
+  - [`map`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#map) is similar to [`foreach`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#foreach), but it is a reporter - It takes an input list and a reporter name or reporter block
+  - 组成 - a command name / block of commands + input list 
+
+  ```
+  show map round [1.2 2.2 2.7]
+  ;; prints [1 2 3]
+  
+  show map [ x -> x < 0 ] [1 -1 3 4 -2 -10]
+  ;; prints [false true false false true true]
+  
+  show map [ x -> x * x ] [1 2 3]
+  ;; prints [1 4 9]
+  ```
+
+- other primitives for processing whole lists
+
+  -  [`filter`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#filter), [`reduce`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#reduce), and [`sort-by`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#sort-by)
+  -  [`repeat`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#repeat) or [`while`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#while)
+
+<br>
+
+#### Varing number of inputs
+
+- In these cases, in order to pass them a number of inputs other than their default,  the primitive and its inputs must be surrounded by parentheses
+
+```
+show list 1 2
+=> [1 2]
+show (list 1 2 3 4)
+=> [1 2 3 4]
+show (list)
+=> []
+```
+
+- Note that each of these special primitives has a default number of inputs for which no parentheses are required
+- The primitives which have this capability - [`list`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#list), [`word`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#word), [`sentence`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#sentence), [`map`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#map), [`foreach`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#foreach), [`run`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#run), and [`runresult`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#run)
+
+<br>
+
+#### Lists of agents
+
+- agentsets are always in random order - If you need your agents to do something in a fixed order, you need to make a list of the agents instead
+- There are two primitives that help you do this, [`sort`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#sort) and [`sort-by`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#sort-by)
+- If you use [`sort`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#sort) on an agentset of turtles, the result is a list of turtles sorted in ascending order by [`who`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#who) number
+- If you use [`sort`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#sort) on an agentset of patches, the result is a list of patches sorted left-to-right, top-to-bottom
+- If you need descending order instead, you can combine [`reverse`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#reverse) with [`sort`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#sort), for example `reverse sort turtles`.
+
+- If you want your agents to be ordered by some other criterion than the standard ones [`sort`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#sort) uses, you’ll need to use [`sort-by`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#sort-by) instead.
+
+```
+sort-by [ [a b] -> [size] of a < [size] of b ] turtles
+;; This returns a list of turtles sorted in ascending order by their turtle variable size.
+```
+
+- There’s a common pattern to get a list of agents in a random order, using a combination of [`of`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#of) and [`self`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#self), in the rare case that you cannot just use [`ask`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#ask):
+
+```
+[self] of my-agentset
+```
+<br>
+
+#### Asking a list of agents
+
+- Once you have a list of agents, you might want to ask them each to do something. To do this, use the [`foreach`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#foreach) and [`ask`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#ask) commands in combination, like this:
+- Note that you can’t use [`ask`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#ask) directly on a list of turtles. [`ask`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#ask) only works with agentsets and single agents.
+
+```
+foreach sort turtles [ the-turtle ->
+  ask the-turtle [
+    ...
+  ]
+]
+
+;;This will ask each turtle in ascending order by who number
+;;Substitute “patches” for “turtles” to ask patches in left-to-right, top-to-bottom order
+```
+<br>
+
+#### Performance of lists
+
+<br>
+
+### Math
+
+- All numbers in NetLogo are stored internally as double precision floating point numbers
+- An “integer” in NetLogo is simply a number that happens to have no fractional part
+- Integers are always printed by NetLogo without the trailing “.0”:
+
+```
+show 1.5 + 1.5
+// -> result - observer: 3
+// 如果出现浮点数，0.后的数字会被discard
+```
+
+- 如果涉及到小数的计算，不是所有的分数都可以精确表示，而且可能会出现四舍五入的情况
+
+```
+show 1 / 6 + 1 / 6 + 1 / 6 + 1 / 6 + 1 / 6 + 1 / 6
+=> 0.9999999999999999
+show 1 / 9 + 1 / 9 + 1 / 9 + 1 / 9 + 1 / 9 + 1 / 9 + 1 / 9 + 1 / 9 + 1 / 9
+=> 1.0000000000000002
+```
+
+<br>
+
+#### scientific notation
+
+- Very large or very small floating point numbers are displayed by NetLogo using “scientific notation”
+
+```
+show 0.000000000001
+=> 1.0E-12
+show 50000000000000000000
+=> 5.0E19
+```
+
+- Numbers in scientific notation are distinguished by the presence of the letter E (for “exponent”). It means “times ten to the power of”, so for example, 1.0E-12 means 1.0 times 10 to the -12 power
+
+```
+show 1.0 * 10 ^ -12
+=> 1.0E-12
+```
+
+- When entering a number, the letter E may be either upper or lowercase. When printing a number, NetLogo always uses an uppercase E
+
+```
+show 4.5e20
+=> 4.5E20
+```
+
+<br>
+
+#### floating point accuracy 
+
+- 由于NetLogo中的数字受到浮点数字在二进制中的表示方式的限制，您可能会得到略微不准确的答案
+
+```
+show 0.1 + 0.1 + 0.1
+=> 0.30000000000000004
+show cos 90
+=> 6.123233995736766E-17
+```
+
+- 这是浮点运算的一个固有问题；它发生在所有使用浮点数字的编程语言中。如果你正在处理固定精度的数量，例如美元和美分，一个常见的技术是在内部只使用整数（美分），然后除以100，得到一个以美元为单位的结果，以便显示。
+- 如果你必须使用浮点数，那么在某些情况下，你可能需要用一个能容忍轻微不精确的测试来代替直接的等价测试，如 if x = 1 [ ... ] ，例如 if abs (x - 1) < 0.0001 [ ... ] 。
+- 另外，the precision primitive 对于为显示目的对数字进行四舍五入很方便。NetLogo显示器也会把它们显示的数字四舍五入到可配置的小数位数
+
+<br>
+
+### Random numbers
+
+(未完成)
+
+- The random numbers used by NetLogo are what is called “pseudo-random”. (This is typical in computer programming.) That means they appear random, but are in fact generated by a deterministic process. “Deterministic” means that you get the same results every time
+- NetLogo’s random number generator can be started with a certain seed value, which must be an integer in the range -2147483648 to 2147483647
+- Once the generator has been “seeded” with the [`random-seed`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#random-seed) command, it always generates the same sequence of random numbers from then on
+
+```
+random-seed 137
+show random 100
+show random 100
+show random 100
+```
+
+- Sometimes when we make a new version of NetLogo the random number generator changes
+- To create a number suitable for seeding the random number generator, use the [`new-seed`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#new-seed) reporter. [`new-seed`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#new-seed) creates a seed, evenly distributed over the space of possible seeds, based on the current date and time. It never reports the same seed twice in a row
+
+<br>
+
+### Turtle shapes
+
+- A turtle’s shape is stored in its [`shape`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#shape) variable and can be set using the [`set`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#set) command.
+- New turtles have a shape of “default”. The [`set-default-shape`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#set-default-shape) primitive is useful for changing the default turtle shape to a different shape, or having a different default turtle shape for each breed of turtle
+- The [`shapes`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#shapes) primitive reports a list of currently available turtle shapes in the model
+
+```
+ask turtles [ set shape one-of shapes ]
+;; to assign a random shape to a turtle
+```
+
+- Shapes Editor [section](https://ccl.northwestern.edu/netlogo/docs/shapes.html) 
+- The thickness of the lines used to draw the vector shapes can be controlled by the [`__set-line-thickness`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#set-line-thickness) primitive.
+
+<br>
+
+### Plotting 
+
+- Before you can plot, you need to create one or more plots in the Interface tab
+
+<br>
+
+#### Plotting points
+
+- `plot` / `plotxy`
+- With `plot` you need only specify the y value you want plotted. The x value will automatically be 0 for the first point you plot, 1 for the second, and so on
+- `plot` command - `plot count turtles`
+
+- If you need to specify both the x and y values of the point you want plotted, then use `plotxy` instead - `plotxy time count-turtles`
+
+<br>
+
+#### Plot commands
+
+- Plot setup/update commands and pen setup/update commands are run when the either reset-ticks or setup-plots commands are run. If the stop command is run in the body of the plot setup commands then the pen setup commands will not run.
+- Four commands that trigger plotting explained 
+  - `setup-plots` executes commands for one plot at a time.
+  - `update-plots` is very similar to `setup-plots`.
+  - `tick` is exactly the same as `update-plots` except that the tick counter is incremented before the plot commands are executed
+  - `reset-ticks` first resets the tick counter to 0, and then does the equivalent of `setup-plots` followed by `update-plots`
+
+```
+;;A typical model will use reset-ticks and tick
+to setup
+  clear-all
+  ...
+  reset-ticks
+end
+
+to go
+  ...
+  tick
+end
+
+```
+
+- 不使用ticks但仍想进行绘图的模型将使用setup-plots和update-plots。在前面的代码中，用setup-plots update-plots代替reset-ticks，用update-plots代替tick
+
+<br>
+
+### Strings
+
+- Most of the list primitives work on strings as well
+
+```
+but-first "string" => "tring"
+but-last "string" => "strin"
+empty? "" => true
+empty? "string" => false
+first "string" => "s"
+item 2 "string" => "r"
+last "string" => "g"
+length "string" => 6
+member? "s" "string" => true
+member? "rin" "string" => true
+member? "ron" "string" => false
+position "s" "string" => 0
+position "rin" "string" => 2
+position "ron" "string" => false
+remove "r" "string" => "sting"
+remove "s" "strings" => "tring"
+replace-item 3 "string" "o" => "strong"
+reverse "string" => "gnirts"
+```
+
+- A few primitives are specific to strings
+
+```
+is-string? "string" => true
+is-string? 37 => false
+substring "string" 2 5 => "rin"
+word "tur" "tle" => "turtle"
+```
+
+- Strings can be compared using the =, !=, <, >, <=, and >= operators
+- f you need to embed a special character in a string, use the following escape sequences
+  - `\n` = newline
+  - `\t` = tab
+  - `\"` = double quote
+  - `\\` = backslash
+
+<br>
+
+### Output
+
+- Output to the screen can also be later saved to a file using the [`export-output`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#export-cmds) command
+
+- The basic commands for generating output to the screen in NetLogo are [`print`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#print), [`show`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#show), [`type`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#type), and [`write`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#write) - these commands send their output to the Command Center
+
+  - [`print`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#print) is useful in most situations.
+  - [`show`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#show) lets you see which agent is printing what.
+  - [`type`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#type) lets you print several things on the same line.
+  - [`write`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#write) lets you print values in a format which can be read back in using [`file-read`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#file-read).
+
+- To send output there instead of the Command Center, use the [`output-print`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#output-cmds), [`output-show`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#output-cmds), [`output-type`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#output-cmds), and [`output-write`](https://ccl.northwestern.edu/netlogo/docs/dictionary.html#output-cmds) commands
+
+  
+
+### File I/O
+
+
+
+### Movies
+
+
+
+### Drawing 
+
+
+
+### Topology
+
+
+
+### Links
+
+
+
+### Ask-Concurrent
+
+
+
+### Tie
+
+
+
+### Multiple source files
+
+
+
+### Syntax
+
+
+
+#### Color
+
+- Keywords are green
+- Constants are orange
+- Comments are gray
+- Primitive commands are blue
+- Primitive reporters are purple
+- Everything else is black
+
+
+<br>
+
+
+## Class 01
+
+<br>
+
+### Task_1
+
+先参考了一个山火模型
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0kz4px1xqj211z0u0ncw.jpg)
+
+```
+  initial-trees   ;; how many trees (green patches) we started with
+  burned-trees    ;; how many have burned so far
+]
+
+breed [fires fire]    ;; bright red turtles -- the leading edge of the fire
+breed [embers ember]  ;; turtles gradually fading from red to near black
+
+to setup
+  clear-all
+  set-default-shape turtles "square"
+  ;; make some green trees
+  ask patches with [(random-float 100) < density]
+    [ set pcolor green ]
+  ;; make a column of burning trees
+  ask patches with [pxcor = min-pxcor]
+    [ ignite ]
+  ;; set tree counts
+  set initial-trees count patches with [pcolor = green]
+  set burned-trees 0
+  reset-ticks
+end
+
+to go
+  if not any? turtles  ;; either fires or embers
+    [ stop ]
+  ask fires
+    [ ask neighbors4 with [pcolor = green]
+        [ ignite ]
+      set breed embers ]
+  fade-embers
+  tick
+end
+
+;; creates the fire turtles
+to ignite  ;; patch procedure
+  sprout-fires 1
+    [ set color red ]
+  set pcolor black
+  set burned-trees burned-trees + 1
+end
+
+;; achieve fading color effect for the fire as it burns
+to fade-embers
+  ask embers
+    [ set color color - 0.3  ;; make red darker
+      if color < red - 3.5     ;; are we almost at black?
+        [ set pcolor color
+          die ] ]
+end
+
+
+; Copyright 1997 Uri Wilensky.
+; See Info tab for full copyright and license.
+
+```
+
+<br>
+
+### Task_2
+
+要求：牛+草坪
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0kz6hjfpaj211p0u0769.jpg)
+
+
+
+```
+to setup
+  clear-all ;把之前所有东西都清掉
+  create-turtles 100 [
+   setxy random-xcor random-ycor
+   set shape "cow"
+  ]
+  ask patches[
+    set pcolor green
+  ]
+end
+
+
+to go
+  ask turtles[
+    set heading random 360
+    forward 1 ;表示向前跑一个单位
+  ]
+end
+
+```
+
+
+<br>
+
+
+### Task_3
+
+要求：背景 + 圆形
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0kzbc0cocj20zm0u0dhm.jpg)
+
+```
+to setup
+
+  clear-all ;reset the scree
+  create-turtles 100[ ;create 100 turtles
+    set shape "bug"
+    forward 10
+  ]
+  ask patches[ ;想尝试换一下背景颜色
+    set pcolor 138
+  ]
+end
+
+```
+
+
+<br>
+
+
+### Task_4
+
+要求：两个圆形 + 小圆绕大圆
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0kzd1orwlj210t0u0dh6.jpg)
+
+
+
+```
+;全部转换了一下颜色
+
+to setup
+  clear-all
+  create-turtles 1[
+    set shape "circle"
+    set color 138
+    set size 5
+  ]
+
+  create-turtles 1[
+    set shape "circle"
+    set color 4
+    setxy 0 8
+    set heading 90
+  ]
+
+  ask patches [
+    set pcolor 132
+  ]
+end
+
+to go
+  ask turtle 1[
+    forward 1
+    set heading heading + 7.17
+  ]
+end
+
+```
+
+<br>
+
+## Class 02
+
+<br>
+
+### Task_05
+
+要求：上下两种不同颜色切割
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0kzgdvr9ij211c0u00ty.jpg)
+
+```
+to setup
+  clear-all
+  ask patches [
+    ifelse pycor > 0
+       [set pcolor 38]
+       [set pcolor 9.5]
+  ]
+end
+
+```
+
+<br>
+
+### Task_06
+
+要求：四分之一颜色切割
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0kziatwmij211i0u0jsk.jpg)
+
+```
+to setup
+  clear-all
+  ask patches [
+    ifelse (pycor > 0) or (pxcor > 0)
+       [set pcolor 139.5]
+       [set pcolor 9]
+  ]
+end
+
+```
+
+<br>
+
+### Task_07
+
+要求：条纹颜色切割
+
+![截屏2022-03-24 下午3.05.24](/Users/juanne/Library/Application Support/typora-user-images/截屏2022-03-24 下午3.05.24.png)
+
+```
+to setup
+  clear-all
+  ask patches [
+    ifelse (pycor mod 2 = 1)
+       [set pcolor 139.5]
+       [set pcolor 38]
+  ]
+end
+
+```
+
+<br>
+
+### Task_08
+
+要求：patches 随机色
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0kzkaiu0xj211s0u0wor.jpg)
+
+```to setup
+  
+  clear-all
+  ask patches [
+    let choice random 5 ;0,1,2,3,5 - 5个选一个
+    (ifelse
+        choice = 0 [
+          set pcolor red
+          set plabel "r"
+        ]
+         choice = 1 [
+          set pcolor blue
+          set plabel "b"
+        ]
+         choice = 2 [
+          set pcolor green
+          set plabel "g"
+        ]
+         choice = 3 [
+          set pcolor pink
+          set plabel "p"
+        ]
+        [
+          set pcolor yellow
+          set plabel "y"
+    ])
+  ]
+end
+
+```
+
+<br>
+
+## Class 03
+
+<br>
+
+### Task_09
+
+要求：草坪 + 土壤 + 小牛 + 3个monitor检测
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0l0k9hkjsj210z0u0n18.jpg)
+
+```
+turtles-own [life] ;define a new porperty
+
+
+to setup
+  ca ;clear all
+
+  ;initiate the ground
+  ask patches [
+    let i int random-normal 0 1
+    ;i是变量variable 正态分布 int会将返回的小数取整 增加/减少0的概率
+    ifelse i = 0
+    [set pcolor green]
+    [set pcolor brown]
+  ]
+
+  ;initiate the cow
+  crt 100 [ ;create turtles
+    set shape "cow"
+    set color yellow
+    set life 5
+    setxy random-xcor random-ycor ;所有牛位置随机
+  ]
+
+end
+
+to go
+  ask turtles [
+    right random 360 ;;随机跑 right random 360 和 left random 360 一样
+    fd 1 ;;forward 1
+
+    ifelse pcolor = green ;;牛所在位置的pcolor
+    [
+      set pcolor black
+      set life 5
+    ]
+    [set life life - 1]
+
+    if life = 0 [die]
+
+    ;;print life
+    set label life
+
+  ]
+
+
+end
+
+```
+
+- monitor - No.of cows - count turtles
+- monitor - No.of glass - count patches with [pcolor = green]
+- monitor - ( cows - life ) - count turtles with [life = 5]
+
+<br>
+
+### Task_10
+
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0l1z450knj21060u0wio.jpg)
+
+```
+;;以下为主程序
+
+turtles-own [life] ;define a new porperty
+
+
+to setup
+  ca ;clear all
+  reset-ticks
+
+  initiate_the_ground
+
+  initiate_the_cow
+
+end
+
+to go
+  ask turtles [
+    right random 360 ;;随机跑 right random 360 和 left random 360 一样
+    fd 1 ;;forward 1
+
+    ifelse pcolor = green ;;牛所在位置的pcolor
+    [
+      set pcolor black
+      set life 5
+    ]
+    [set life life - 1]
+
+    if life = 0 [die]
+
+    ;;print life
+    set label life
+  ]
+
+  if count turtles = 0
+  [stop] ;;牛数量没有的时候，plot停掉
+
+  regrow_grass
+
+  tick ;;每跑一次go都要tick一下plot
+
+end
+
+
+
+;;以下为子程序
+
+to regrow_grass ;;子程序 主程序就留一样的名字
+    ask patches [
+    if pcolor != green [
+      if random 100 < 1 ;百分之一的几率跑下面这个
+      [set pcolor green]
+    ]
+  ]
+end
+
+to initiate_the_ground
+  ask patches [
+    let i int random-normal 0 1
+    ;i是变量variable 正态分布 int会将返回的小数取整 增加/减少0的概率
+    ifelse i = 0
+    [set pcolor green]
+    [set pcolor brown]
+  ]
+end
+
+to initiate_the_cow
+  crt 100 [ ;create turtles
+    set shape "cow"
+    set color yellow
+    set life 5
+    setxy random-xcor random-ycor ;所有牛位置随机
+  ]
+end
+
+```
+
+- plot图示
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0ql0dsgdgj20y60p6wh8.jpg)
+
+
+<br>
+
+
+### Task_11
+
+- 加入plot
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0ql1njk61j215m0u0wim.jpg)
+
+```
+;;以下为主程序
+
+turtles-own [life energy gender] ;define two new porperties
+
+
+to setup
+  ca ;clear all
+  reset-ticks
+
+  initiate_the_ground
+
+  initiate_the_cow
+
+end
+
+to go
+  ask turtles [
+    right random 360 ;;随机跑 right random 360 和 left random 360 一样
+    fd 1 ;;forward 1
+
+    ifelse pcolor = green ;;牛所在位置的pcolor
+    [
+      set pcolor black
+      set life n_life
+      set energy energy + 1
+    ]
+    [set life life - 1]
+
+    if life = 0 [die]
+
+    ;;print life
+    set label life
+  ]
+
+  if count turtles = 0
+  [stop] ;;牛数量没有的时候，plot停掉
+
+  regrow_grass
+
+  reproduce
+
+  tick ;;每跑一次go都要tick一下plot
+
+end
+
+
+;;以下为子程序
+
+to regrow_grass ;;子程序 主程序就留一样的名字
+    ask patches [
+    if pcolor != green [
+      if random 100 < no_grass ;百分之一的几率跑下面这个
+      [set pcolor green]
+    ]
+  ]
+end
+
+to initiate_the_ground
+  ask patches [
+    let i int random-normal 0 1
+    ;i是变量variable 正态分布 int会将返回的小数取整 增加/减少0的概率
+    ifelse i = 0
+    [set pcolor green]
+    [set pcolor brown]
+  ]
+end
+
+to initiate_the_cow
+  crt n_cows [ ;create turtles n_cows是slider
+    set shape "cow"
+    set color yellow
+    set life n_life
+    setxy random-xcor random-ycor ;所有牛位置随机
+    set energy 0
+  ]
+end
+
+to reproduce
+  ask turtles [
+    if energy = 3 [
+      hatch 1 [ ;得到一头新牛
+        set energy 0 ;新牛baby的energy
+        set color red
+      ]
+     set energy 0 ;已经吃了3次草的牛的energy
+    ]
+  ]
+end
+```
+
+- 三个slider设置
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0ql5y2rm7j215c0bmq41.jpg)
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0ql6gpbqij215i0bymyd.jpg)
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0ql6ttksvj215o0bumyh.jpg)
+
+<br>
+
+### Task_12
+
+- slider设置（变量名称code也要对应） + 颜色设置
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0ql3b6cyuj21660u0n1c.jpg)
+
+
+
+```
+;;以下为主程序
+;;新要求：设置分为母牛和公牛，母牛遇到功能且energy为3生下baby
+
+turtles-own [life energy gender] ;define two new porperties
+
+
+to setup
+  ca ;clear all
+  reset-ticks
+
+  initiate_the_ground
+
+  initiate_the_cow
+
+end
+
+to go
+  ask turtles [
+    right random 360 ;;随机跑 right random 360 和 left random 360 一样
+    fd 1 ;;forward 1
+
+    ifelse pcolor = green ;;牛所在位置的pcolor
+    [
+      set pcolor black
+      set life n_life
+      set energy energy + 1
+    ]
+    [set life life - 1]
+
+    if life = 0 [die]
+
+    ;;print life
+    set label life
+  ]
+
+  if count turtles = 0
+  [stop] ;;牛数量没有的时候，plot停掉
+
+  regrow_grass
+
+  reproduce
+
+  tick ;;每跑一次go都要tick一下plot
+
+end
+
+
+;;以下为子程序
+
+to initiate_the_ground
+  ask patches [
+    let i int random-normal 0 1
+    ;i是变量variable 正态分布 int会将返回的小数取整 增加/减少0的概率
+    ifelse i = 0
+    [set pcolor green]
+    [set pcolor brown]
+  ]
+end
+
+to initiate_the_cow
+  crt n_cows [ ;create turtles n_cows是slider
+    set shape "cow"
+    set color blue
+    set life n_life
+    setxy random-xcor random-ycor ;所有牛位置随机
+    set energy 0
+    set gender random 2
+    if gender = 1 [set color red];; assign gender: 0 = male 1 = female
+  ]
+
+end
+
+
+
+to regrow_grass ;;子程序 主程序就留一样的名字
+    ask patches [
+    if pcolor != green [
+      if random 100 < no_grass ;百分之一的几率跑下面这个
+      [set pcolor green]
+    ]
+  ]
+end
+
+to reproduce
+  ask turtles with [gender = 0][
+    ask turtles-here with [gender = 1 and energy >= 3] [
+      hatch 1 [ ;得到一头新牛
+        set energy 0 ;新牛baby的energy
+        set color yellow
+        set gender random 2
+        print who
+      ]
+     set energy 0 ;已经吃了3次草的牛的energy
+    ]
+    set energy 0;
+  ]
+end
+
+```
+
+<br>
+
+## Class 04
+
+<br>
+
+### Task_13
+
+- 测试 圆周率
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qn3wcvkqj211u0tsgnt.jpg)
+
+```
+to setup
+  ca
+  ;;(1) draw a circle
+  ask patches [
+    set pcolor red
+    if distance patch 0 0 <= 200 [set pcolor yellow]
+  ]
+end
+
+
+;;(2) throw beans
+to throw_beans
+  crt 1000[
+    set shape "circle"
+    set size 2
+    setxy random-xcor random-ycor
+  ]
+end
+
+```
+
+- Monitor - total beans - count turtles
+- Monitor - beans on the circle - count turtles with [pcolor = yellow]
+- Monitor - (count turtles with [pcolor = yellow] / count turtles) * 4
+
+<br>
+
+### Task_14
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qsw2ii1sj20z40tu19p.jpg)
+
+```
+to setup
+  clear-all
+
+  ask patches [
+    set pcolor green + random 10 ;;random 10返回0-9的随机数，颜色就会在green基础上变化
+    if distance patch -90 0 + distance patch 90 0 <= 210 [set pcolor yellow + random 5]
+  ]
+
+end
+
+to throw_beans
+  crt 100[
+    setxy random-xcor random-ycor
+    set shape "circle"
+    set size 5
+  ]
+end
+```
+
+- monitor - total turtles - count turtles
+- monitor - () - count turtles with [distance patch -90 0 + distance patch 90 0 <= 210]
+- monitor - () - count turtles with [distance patch -90 0 + distance patch 90 0 <= 210 ] / count turtles * 100
+
+<br>
+
+### Task_15
+
+- 导入图片 - 算面积
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qusia78aj20u00y2n0f.jpg)
+
+```
+to setup
+  ca
+  import-pcolors "Macau_map.png" ;;可以把图片放在patch的颜色上面
+end
+
+to throw_beans
+  crt 100 [
+    set shape "circle"
+    set size 3
+    setxy random-xcor random-ycor
+  ]
+end
+```
+
+- monitor - total beans - count turtles with [pcolor != 9.9]
+- monitor - beans (Coloane) - count turtles with [pcolor = 117.1]
+- monitor - area of Coloane - count turtles with [pcolor = 117.1] / count turtles with [pcolor != 9.9] * 33
+
+<br>
+
+### Task_16
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0quweb7gpj20u00xitbt.jpg)
+
+```
+to setup
+  ca
+  import-pcolors "Macau_map.png" ;;可以把图片放在patch的颜色上面
+end
+
+to throw_beans
+  crt 100 [
+    set shape "circle"
+    set size 3
+    setxy random-xcor random-ycor
+  ]
+end
+
+to draw
+  if mouse-down? [ ;;return boolean value: true or false
+    ask patch mouse-xcor mouse-ycor [
+      ;; 半径为5的pat执行commend
+      ask patches in-radius pen_size [set pcolor pen_color]
+    ]
+  ]
+end
+```
+
+- Input - pen_color (创建了这个全局变量) -  type color 
+- Slider - pen_size (创建了这个全局变量) 
+
+<br>
+
+### 课后
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0quzwom5wj20u00ux41d.jpg)
+
+```
+to setup
+  ca
+  import-pcolors "Macau_map.png" ;;可以把图片放在patch的颜色上面
+  print choosing_color
+end
+
+to throw_beans
+  crt 100 [
+    set shape "circle"
+    set size 3
+    setxy random-xcor random-ycor
+  ]
+end
+
+to draw
+  if mouse-down? [ ;;return boolean value: true or false
+    ask patch mouse-xcor mouse-ycor [
+      ;; 半径为5的pat执行commend
+      ask patches in-radius pen_size [set pcolor pen_color]
+    ]
+  ]
+end
+```
+
+
+<br>
+
+
+## Class 05
+
+<br>
+
+### Task_17
+
+要求：遇到人停车
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qv3uytqgj21me0osdic.jpg)
+
+```
+globals [isSafe?] ;;boolean value true or false
+
+
+;;setup和go主程序
+
+to setup
+  ca
+  draw_road
+  add_car
+  add_person
+  set isSafe? true
+end
+
+
+to go
+  car_move
+  person_walk
+end
+
+
+;;setup子程序
+
+to draw_road
+  ask patches [
+    set pcolor green - random-float 0.5 ;;返回随机数颜色数 减去0-0.5 达成随机效果
+  ]
+
+  ask patches with [abs pycor < 5] [ ;;abs 绝对值取值
+    set pcolor grey - 2.5 + random-float 0.25
+  ]
+
+  ask patches with [ (abs pycor < 5 and pycor mod 2 = 1) and abs pxcor < 6 ] [
+    set pcolor white
+  ]
+end
+
+to add_car
+  crt 1 [
+    setxy -19 0
+    set size 3
+    set shape "car"
+    set heading 90
+    set color orange
+  ]
+end
+
+to add_person
+  crt 1 [
+    setxy 0 -7
+    set size 3
+    set shape "person"
+    set heading 0 ;;不改的话就是随机数
+    set color red
+  ]
+end
+
+;;go子程序
+
+to car_move
+  ask turtle 0 [
+    ifelse isSafe?
+    [fd 1]
+    [
+      if xcor < -6 or xcor > 0 [fd 1]
+    ]
+  ]
+end
+
+to person_walk
+  ask turtle 1 [
+    forward 0.1 ;;fd
+
+    ifelse abs ycor < 5
+    [set isSafe? false]
+    [set isSafe? true]
+
+    print isSafe?
+  ]
+end
+```
+
+<br>
+
+### Task_18
+
+要求：遇到多人停车
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qv4w76cbj21me0q0tb8.jpg)
+
+```
+globals [isSafe?] ;;boolean value true or false
+breed [cars car]
+breed [persons person]
+
+
+
+;;setup和go主程序
+
+to setup
+  ca
+  draw_road
+  add_car
+  add_person
+  set isSafe? true
+end
+
+
+to go
+  car_move
+  person_walk
+end
+
+
+;;setup子程序
+
+to draw_road
+  ask patches [
+    set pcolor green - random-float 0.5 ;;返回随机数颜色数 减去0-0.5 达成随机效果
+  ]
+
+  ask patches with [abs pycor < 5] [ ;;abs 绝对值取值
+    set pcolor grey - 2.5 + random-float 0.25
+  ]
+
+  ask patches with [ (abs pycor < 5 and pycor mod 2 = 1) and abs pxcor < 6 ] [
+    set pcolor white
+  ]
+end
+
+to add_car
+  create-cars 1 [
+    setxy -19 0
+    set size 1
+    set shape "car"
+    set heading 90
+    set color orange
+  ]
+end
+
+to add_person
+  create-persons 5 [
+    setxy random-normal 0 2 random-normal 0 3 ;;产生以0为mean 3为sd的随机数
+    set size 1
+    set shape "person"
+    set heading 0 ;;不改的话就是随机数
+    set color red
+  ]
+end
+
+;;go子程序
+
+to car_move
+  ask car 0 [
+    ifelse isSafe?
+    [fd 1]
+    [
+      if xcor < -6 or xcor > 0 [fd 1]
+    ]
+  ]
+end
+
+to person_walk
+  ask persons [
+    forward random-normal 0.1 0.2;;fd
+
+    ifelse any? persons-on patches with [abs pxcor < 5 and abs pycor < 4] ;;any是在后面的是不是一个空集
+    [set isSafe? false]
+    [set isSafe? true]
+
+    print isSafe?
+  ]
+end
+
+```
+
+
+<br>
+
+
+### Task_19
+
+- 遇到红灯停，但是车会重叠
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qvewntpyj21lm0poju4.jpg)
+
+```
+breed [lights light]
+breed [cars car]
+globals [isGreen?]
+;;分享函数 one-of [-1 0 1] 随机数
+
+
+;;setup主程序
+
+to setup
+  ca
+  reset-ticks
+  draw_road
+  add_light
+  add_car
+end
+
+;;go主程序
+
+to go
+  move_car
+  run_light
+  tick
+end
+
+;;setup子程序
+
+to draw_road
+  ask patches [
+    set pcolor green - random-float 0.5 ;;返回随机数颜色数 减去0-0.5 达成随机效果
+  ]
+
+  ask patches with [abs pycor < 2] [ ;;abs 绝对值取值
+    set pcolor grey - 2.5 + random-float 0.25
+  ]
+
+end
+
+to add_light
+  create-lights 1 [
+    setxy 0 2
+    set shape "circle"
+    set size 0.8
+    set color green
+    set isGreen? true
+    set pcolor black
+  ]
+end
+
+to add_car
+  ;create-cars 10 [
+   ; setxy random -41 + 20 one-of [-1 0 1] ;-15 到 15 之间 ｜ one-of [-1 0 1]产生这三个值的其中一个 或者用 random 3 - 1;;
+   ;set shape "car"
+   ; set heading 90
+  ;]
+
+  ;;这个方法不会产生重叠的情况
+  ask n-of 10 patches with [abs pycor < 2][ ;; 10 of patches with this condition
+    sprout-cars 1 [
+      set heading 90
+      set shape "car"
+    ]
+  ]
+end
+
+;;go 子程序
+
+to move_car
+  ask cars [
+    ifelse xcor < -1 or xcor > 0
+    [fd 1]
+    [if isGreen?[fd 1]]
+  ]
+end
+
+to run_light
+  ask lights [
+    if ticks mod 50 = 0 [
+      ifelse color = green [
+        set color red
+        set isGreen? false
+      ]
+    [
+      set color green
+      set isGreen? true
+    ]
+   ]
+  ]
+end
+
+```
+
+
+
+
+<br>
+
+
+## Class 06
+
+<br>
+
+### Task 20
+
+要求：遇到红灯停，并且车不会重叠
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qvkfmo8jj21lw0putba.jpg)
+
+```
+breed [lights light]
+breed [cars car]
+globals [isGreen?]
+;;分享函数 one-of [-1 0 1] 随机数
+
+
+;;setup主程序
+
+to setup
+  ca
+  reset-ticks
+  draw_road
+  add_light
+  add_car
+end
+
+;;go主程序
+
+to go
+  move_car
+  run_light
+  tick
+end
+
+;;setup子程序
+
+to draw_road
+  ask patches [
+    set pcolor green - random-float 0.5 ;;返回随机数颜色数 减去0-0.5 达成随机效果
+  ]
+
+  ask patches with [abs pycor < 2] [ ;;abs 绝对值取值
+    set pcolor grey - 2.5 + random-float 0.25
+  ]
+
+end
+
+to add_light
+  create-lights 1 [
+    setxy 0 2
+    set shape "circle"
+    set size 0.8
+    set color green
+    set isGreen? true
+    set pcolor black
+  ]
+end
+
+to add_car
+  ;create-cars 10 [
+   ; setxy random -41 + 20 one-of [-1 0 1] ;-15 到 15 之间 ｜ one-of [-1 0 1]产生这三个值的其中一个 或者用 random 3 - 1;;
+   ;set shape "car"
+   ; set heading 90
+  ;]
+
+  ;;这个方法不会产生重叠的情况
+  ask n-of 10 patches with [abs pycor < 2][ ;; 10 of patches with this condition
+    sprout-cars 1 [
+      set heading 90
+      set shape "car"
+    ]
+  ]
+end
+
+;;go 子程序
+
+to move_car
+  ask cars [
+    if count cars-on patch-ahead 1 = 0 [ ;;patch-ahead count cars-on
+      ifelse xcor < -1 or xcor > 0
+      [fd 1]
+      [if isGreen?[fd 1]]
+     ]
+  ]
+end
+
+to run_light
+  ask lights [
+    if ticks mod 50 = 0 [
+      ifelse color = green [
+        set color red
+        set isGreen? false
+      ]
+    [
+      set color green
+      set isGreen? true
+    ]
+   ]
+  ]
+end
+```
+
+<br>
+
+### Task 21
+
+要求：能画圈把飞机框住
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qvnl12frj20z80u00u4.jpg)
+
+```
+to setup
+  ca
+  crt 1 [
+    set size 3
+    set color yellow
+    set shape "airplane"
+  ]
+
+end
+
+to draw
+  if mouse-down? [
+    ask patch mouse-xcor mouse-ycor [
+      ask patches in-radius 1 [set pcolor grey]
+    ]
+  ]
+end
+
+to go
+  ask turtles [
+    fd 1
+    set heading heading + random-normal 0 5 ;0为1 standard deviation 5 正负5
+    ;; 想要turtle能够使用neighbors辨别
+    if count neighbors with [pcolor = grey] > 3[
+      set heading heading + 90
+    ]
+  ]
+end
+```
+
+<br>
+
+### Task 22
+
+- 用到foreach 创建乌龟
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qvqg4nxcj210t0u0abo.jpg)
+
+```
+turtles-own [speed]
+
+
+to setup
+  ca
+
+  foreach [1 2 3 4 5 6 7 8 9 10][
+  x ->
+  crt 1[
+    set shape "turtle"
+    setxy random-xcor random-ycor
+    set heading 0
+    set size x / 2
+    set speed x
+  ]
+ ]
+
+end
+
+to go
+  ask turtles [
+    forward speed
+  ]
+end
+```
+
+
+<br>
+
+### Task 23
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qvsj3ob6j20u00v30uj.jpg)
+
+```
+turtles-own [income]
+globals [i j]
+
+to setup
+  ca
+  set i 1 ;初始化值
+  set j 0;
+
+  crt 10 [
+    set shape "person"
+    setxy random-xcor random-ycor
+    ;;set income int (random-float 1) * (2000 - 10000) + 10000
+    set income random 1001 + 1000 ;1000-2000
+    set label income
+  ]
+
+  foreach [income] of turtles [;;创建了一个income的list
+    x ->
+    print (word "Income#" i ": " x)
+    set i i + 1
+    set j j + x
+  ] print (word "Total = " j "!")
+
+
+end
+```
+
+<br>
+
+## Class 07
+
+<br>
+
+### Task_24
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qvzw9tdzj214n0u042c.jpg)
+
+```
+to setup
+  ca
+
+  ;;从左到右 从下到上的顺序
+  foreach [-15 -12 -9 -6 -3 0 3 6 9 12 15][
+    x ->
+    foreach [-12 -9 -6 -3 0 3 6 9 12] [
+      y ->
+
+      ifelse x = 0 or y = 0 [
+         crt 1 [
+      set shape "tree"
+      set size 2
+      setxy x y
+
+      ]
+      ]
+        [
+          crt 1 [
+      set shape "house"
+      set size 2
+      setxy x y
+
+        ]
+     ]
+    ]
+  ]
+
+
+end
+```
+
+<br>
+
+### Task_25
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qw0ldc7gj21c60u00vi.jpg)
+
+```
+breed [roadsigns roadsign]
+
+to setup
+  ca
+
+  draw_road
+
+
+
+end
+
+to draw_road
+  ask patches [
+    set pcolor 2 - random-float 1
+  ]
+
+  ask patches with [abs pycor = 1 or abs pxcor = 8 or abs pxcor = 10] [
+    set pcolor white
+  ]
+
+  ask patches with [pycor = 0] [
+    set pcolor 2
+  ]
+
+  add_roadsign
+end
+
+to add_roadsign
+  foreach [-25 -20 -15 -10 -5 0 5 10 15 20 25] [
+    x ->
+    create-roadsigns 1[
+      set shape "forward_sign"
+      set color grey
+      setxy x 1
+      set heading 90
+    ]
+  ]
+
+  foreach [-23 -18 -13 -8 -3 2 8 12 17 22] [
+    x ->
+    create-roadsigns 1[
+      set shape "forward_sign"
+      set color grey
+      setxy x -1
+      set heading 270
+  ]
+ ]
+
+  foreach [-8 8] [
+    x ->
+    foreach [-15 -10 -5 5 10 15][
+      y ->
+      create-roadsigns 1[
+      set shape "forward_sign"
+      set color grey
+      set heading 180
+      setxy x y
+      ]
+    ]
+  ]
+
+  foreach [-10 10] [
+    x ->
+    foreach [-15 -10 -5 5 10 15][
+      y ->
+      create-roadsigns 1[
+      set shape "forward_sign"
+      set color grey
+      set heading 0
+      setxy x y
+      ]
+    ]
+  ]
+
+  foreach [-10 10] [
+    x ->
+    create-roadsigns 1[
+      set shape "leftturn_sign"
+      set color grey
+      set heading 90
+      setxy x 1
+      ]
+  ]
+
+  foreach [-8 8] [
+    x ->
+    create-roadsigns 1[
+      set shape "leftturn_sign"
+      set color grey
+      set heading 270
+      setxy x -1
+      ]
+  ]
+
+  foreach [-8 8] [
+    x ->
+    create-roadsigns 1[
+      set shape "leftturn_sign"
+      set color grey
+      set heading 180
+      setxy x 2
+      ]
+  ]
+
+  foreach [-10 10] [
+    x ->
+    create-roadsigns 1[
+      set shape "leftturn_sign"
+      set color grey
+      set heading 0
+      setxy x -2
+      ]
+  ]
+end
+
+```
 
 <br>
 
 
 
-## class 01
+### Task_26
 
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qw2htf27j21bs0u0n01.jpg)
+
+```
+breed [roadsigns roadsign]
+breed [cars car]
+
+
+to setup
+  ca
+  draw_road
+  add_car
+end
+
+to go
+  move_forward
+
+end
+
+to move_forward
+  ask cars [
+    if count other turtles-here = 2 [
+      if random 100 < 50 [lt 90] ;; set heading heading - 90    or    leftturn 90
+    ]
+
+    if count other turtles-here = 1 and count other turtles-here with [shape = "leftturn_forwad"] = 1 [
+      fd 1
+      lt 90
+
+    ]
+    fd 1
+
+
+  ]
+end
+
+
+to add_car
+  create-cars 1 [
+    set shape "car top"
+    setxy 0 1
+    set size 2
+    set heading 90
+  ]
+end
+
+to draw_road
+  ask patches [
+    set pcolor 2 - random-float 1
+  ]
+
+  ask patches with [abs pycor = 1 or abs pxcor = 8 or abs pxcor = 10] [
+    set pcolor white
+  ]
+
+  ask patches with [pycor = 0] [
+    set pcolor 2
+  ]
+
+  add_roadsign
+end
+
+to add_roadsign
+  foreach [-25 -20 -15 -10 -5 0 5 10 15 20 25] [
+    x ->
+    create-roadsigns 1[
+      set shape "forward_sign"
+      set color grey
+      setxy x 1
+      set heading 90
+    ]
+  ]
+
+  foreach [-23 -18 -13 -8 -3 2 8 12 17 22] [
+    x ->
+    create-roadsigns 1[
+      set shape "forward_sign"
+      set color grey
+      setxy x -1
+      set heading 270
+  ]
+ ]
+
+  foreach [-8 8] [
+    x ->
+    foreach [-15 -10 -5 5 10 15][
+      y ->
+      create-roadsigns 1[
+      set shape "forward_sign"
+      set color grey
+      set heading 180
+      setxy x y
+      ]
+    ]
+  ]
+
+  foreach [-10 10] [
+    x ->
+    foreach [-15 -10 -5 5 10 15][
+      y ->
+      create-roadsigns 1[
+      set shape "forward_sign"
+      set color grey
+      set heading 0
+      setxy x y
+      ]
+    ]
+  ]
+
+  foreach [-10 10] [
+    x ->
+    create-roadsigns 1[
+      set shape "leftturn_sign"
+      set color grey
+      set heading 90
+      setxy x 1
+      ]
+  ]
+
+  foreach [-8 8] [
+    x ->
+    create-roadsigns 1[
+      set shape "leftturn_sign"
+      set color grey
+      set heading 270
+      setxy x -1
+      ]
+  ]
+
+  foreach [-8 8] [
+    x ->
+    create-roadsigns 1[
+      set shape "leftturn_sign"
+      set color grey
+      set heading 180
+      setxy x 2
+      ]
+  ]
+
+  foreach [-10 10] [
+    x ->
+    create-roadsigns 1[
+      set shape "leftturn_sign"
+      set color grey
+      set heading 0
+      setxy x -2
+      ]
+  ]
+end
+```
+
+
+<br>
+
+
+### 练习
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qw1nbiw0j21090u0794.jpg)
+
+```
+globals [i j]
+
+to setup
+  ca
+
+
+  foreach [-18 -15 -12 -9 -6 -3 0 3 6 9 12 15 18] [
+    x ->
+    foreach [-15 -12 -9 -6 -3 0 3 6 9 12 15] [
+      y ->
+
+      foreach [5 4 3 2 1][
+        z ->
+      create-turtles 1 [
+        set shape "circle"
+        setxy x y
+        set size z / 2
+        set color z ;;
+
+      ]
+     ]
+    ]
+  ]
+
+
+
+end
+```
+
+<br>
+
+## Class 08
+
+<br>
+
+### Task_27
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qw4d79hpj20zc0u040y.jpg)
+
+```
+globals[step ]
+
+to setup
+  ca
+  ask n-of 100 patches [ set pcolor green ]
+
+  crt 1[
+    set shape "bug"
+    setxy -16 16
+    set color yellow
+    set heading 90
+  ]
+end
+
+to go
+  ask turtles[
+    pen-down;;画出轨迹；；pen-up停止画
+    while[ pcolor != green][
+      if count patches with [pcolor = green] = 0 [stop]
+      set heading one-of [0 90 180 270]
+      fd 1
+      set step step + 1
+     ]
+    set pcolor black
+  ]
+end
+```
+
+<br>
+
+### Task_28
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qw6aj2lwj20yu0u0q5w.jpg)
+
+```
+globals[step]
+
+to setup
+  ca
+  ask n-of 100 patches [ set pcolor green ]
+
+  crt 1[
+    set shape "bug"
+    setxy -16 16
+    set color yellow
+    set heading 90
+  ]
+end
+
+to go
+  ask turtles[
+
+    pen-down;;画出轨迹；；pen-up停止画
+
+    while[pycor >= -16][;;算的是16的那一个状况，跑一个
+      fd 1
+      set step step + 1
+      if pcolor = green[set pcolor black]
+      while[abs pxcor < 16][;;-15~15；；中间的大直线的状况
+        fd 1
+        set step step + 1
+        if pcolor = green[set pcolor black]
+        if count patches with [pcolor = green] = 0 [stop]
+      ]
+        move_down
+    ]
+  ]
+
+end
+
+to move_down
+  set heading 180
+  fd 1
+  set step step + 1
+  if pcolor = green[set pcolor black]
+  ifelse pxcor = 16 [set heading -90][set heading 90 ]
+end
+```
+
+<br>
+
+### Task_29
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qw7hu40wj20zp0u0tb9.jpg)
+
+```
+globals[step target-patch]
+
+to setup
+  ca
+  ask n-of 100 patches [ set pcolor green ]
+
+  crt 1[
+    set shape "bug"
+    setxy -16 16
+    set color yellow
+    set heading 90
+  ]
+end
+
+to go
+  ask turtles[
+
+    pen-down;;画出轨迹；；pen-up停止画
+
+    if count patches with [pcolor = green ] = 0 [stop]
+    set target-patch min-one-of(patches with [pcolor = green])[distance myself]
+    set step step + [distance myself] of target-patch
+    face target-patch ;;no face就会一直保持一个方向
+    move-to target-patch
+    set pcolor black
+  ]
+end
+
+```
+
+
+
+<br>
+
+
+
+## Class 09
+
+<br>
+
+### Task_30
+
+要求：构建links 狼吃羊 羊吃虫
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qpfmlhs0j210t0u0juj.jpg)
+
+```
+;;with 无方向 to/from 有方向-相反
+;;记住shape用string要"" 并且是单数
+breed [wolves wolf]
+breed [sheeps sheep]
+breed [bugs bug]
+
+to setup
+  ca
+
+  create-wolves 2 [
+    setxy random-xcor random-ycor
+    set shape "wolf"
+    set size 2
+  ]
+
+  create-sheeps 4 [
+    setxy random-xcor random-ycor
+    set shape "sheep"
+    set size 2
+  ]
+
+  create-bugs 10 [
+    setxy random-xcor random-ycor
+    set shape "bug"
+    set size 2
+  ]
+
+  ask wolves [create-links-to sheeps]
+  ask sheeps [create-links-to bugs]
+
+
+end
+
+to eat
+  ask one-of wolves [
+    ask one-of out-link-neighbors [die]
+  ]
+
+end
+```
+
+<br>
+
+
+
+### Task_31
+
+要求：分开两个区域 / 传递方向和颜色
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qpdzhd47j211q0u0qei.jpg)
+
+```
+turtles-own [gender]
+links-own [score]
+
+
+to setup
+  ca 
+  ask patches [sprout 1] ;;每个格子都有一个turtle
+  
+  ask turtles with [xcor < 0] [
+    ;;在patch上有turtle的neighbors
+    create-links-with turtles-on neighbors [
+      set score sum [color] of both-ends ]
+  ]
+  
+  ask turtles with [xcor > 1] [
+    ;;在patch上有turtle的neighbors
+    create-links-with turtles-on neighbors 
+  ]
+
+end  
+
+to diffuse_
+  ask turtles [
+    ask link-neighbors [set color (color + [color] of myself) / 2] ;;neighbors的color和我的color
+    ask link-neighbors [set heading (heading + [heading] of myself) / 2]
+  ]
+  
+end  
+```
+
+<br>
+
+### Task 32
+
+要求：满足三种link情况
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qvwixvymj211t0u075x.jpg)
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qvwoygw8j21020pq42e.jpg)
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qvwtt8s8j21000q0dh1.jpg)
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qvxc8ngwj20zk0pgacc.jpg)
+
+```
+to setup
+  ca
+  create-turtles n_nodes [
+    set shape "circle"
+    set color 8
+    set size 1
+  ]
+
+  layout-circle turtles (world-width / 2 - 2)
+
+
+end
+
+to link_1
+  ask turtles [
+    create-links-with other turtles
+  ]
+end
+
+to link_2
+  ask turtles [
+    create-links-with other turtles
+    ]
+
+  while [count links > n_links ] [
+    ask one-of links [die]
+  ]
+end
+
+to link_3
+  ;;ask turtle 0 [print distance turtle 2 ;;28.55]
+
+  ask turtles [
+    create-links-with other turtles with [distance myself > 28]
+  ]
+
+
+end
+```
+
+<br>
+
+### 课后
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qvywjox5j20z30u0abr.jpg)
+
+```
+globals [last_node]
+
+to setup
+  ca
+  ask patches [
+    set pcolor white
+  ]
+
+
+  create-turtles 1 [
+    set shape "circle"
+    set last_node self
+  ]
+
+  repeat 10 [
+    crt 1 [
+      set shape "circle"
+      setxy random-xcor random-ycor
+      create-link-from last_node [tie]
+      set last_node self
+    ]
+  ]
+
+end
+```
+
+```
+globals [last_node last_node_id]
+
+to setup
+  ca
+  ask patches [
+    set pcolor white
+  ]
+
+
+  create-turtles 1 [
+    set shape "circle"
+    set last_node self
+  ]
+
+  repeat 5 [
+    crt 1 [
+      set shape "circle"
+      setxy random-xcor random-ycor
+      ;create-link-from last_node [tie]
+      ;set last_node self
+      create-link-from turtle last_node_id
+      set last_node_id who
+    ]
+  ]
+
+end
+```
 
 <br>
