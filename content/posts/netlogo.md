@@ -50,7 +50,7 @@ Mac 推荐使用 6.2.2 版本
 
 [NetLogo Home Page](https://ccl.northwestern.edu/netlogo/)
 
-[NetLogo 6.2.2 User Manual]((https://ccl.northwestern.edu/netlogo/docs/))
+[NetLogo 6.2.2 User Manual](https://ccl.northwestern.edu/netlogo/docs/)
 
 [Programming Guide](https://ccl.northwestern.edu/netlogo/docs/programming.html)
 
