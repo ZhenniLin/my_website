@@ -2076,7 +2076,172 @@ to setup
     ]
   ]
 
+end 
+```
+
+<br>
+
+## Class 10 
+
+<br>
+
+### Task 33
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h1rvve1opjj20z70u046o.jpg)
+
+```
+globals [last_node]
+
+to setup
+
+  ca
+
+  ask patches [set pcolor white]
+
+  crt 1 [set last_node self]
+
+  repeat 3 [
+    crt 100 [
+      setxy random-xcor random-ycor
+      create-link-from last_node
+      set last_node self
+    ]
+  ]
+
+
+  print (word "Total length: " round sum [link-length] of links)
+
+  let longest_link max-one-of links [link-length] ;基于后面的属性link-length来找
+
+  ask longest_link [
+    set color red
+    set thickness 0.5
+  ]
+
+  print (word "The longest length: " longest_link "; length:" round [link-length] of longest_link )
+
+  let shortest_link min-one-of links [link-length] ;基于后面的属性link-length来找
+
+  ask shortest_link [
+    set color green
+    set thickness 0.5
+  ]
+
+  print (word "The shortest length: " shortest_link "; length:" round [link-length] of shortest_link )
+
+
+
 end
 ```
+<br>
+
+### Task 34
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h1rvwgt9c6j210a0q2dhd.jpg)
+
+```
+globals [nextNode total_distance]
+
+to setup
+  ca
+
+  ask patches [set pcolor white]
+  crt 10 [
+    setxy random-xcor random-ycor
+    set shape "circle"
+    set color grey
+  ]
+
+  ask turtles [
+    create-links-to n-of 2 other turtles
+  ]
+
+  ask turtle 0 [
+    set color red
+    set label "Start"
+    set size 2
+  ]
+
+  ask turtle 9 [
+    set color red
+    set label "End"
+    set size 2
+  ]
+
+  crt 1 [ ;turtle 10
+    set color yellow
+    move-to turtle 0
+  ]
+
+end
+
+to walk
+
+
+  if [distance turtle 9] of turtle 10 = 0 [
+    print total_distance
+    stop
+  ]
+
+  ask turtle 10 [
+    ask one-of other turtles-here [ ;one-of 选一个 other 确保没有自己
+      set nextNode one-of out-link-neighbors
+  ]
+    set total_distance total_distance + [distance nextNode] of self
+    face nextNode
+    move-to nextNode
+  ]
+
+
+
+end
+```
+<br>
+
+### Task 35
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h1rvyubq25j21em0sywqt.jpg)
+
+```
+turtles-own [message?]
+
+to setup
+
+  ca
+  reset-ticks
+
+  crt 500 [
+    setxy random-xcor random-ycor
+    set size 2
+    set message? false
+  ]
+
+  ask one-of turtles [
+    set message? true
+  ]
+
+  ask turtles [
+    ifelse message? [set color red][set color blue]
+    create-links-with n-of links_per_node other turtles
+  ]
+
+end
+
+to go
+  if all? turtles [message?] [stop]
+
+  ask turtles [
+    if any? link-neighbors with [message?] [set message? true]
+    ifelse message? [set color red][set color blue]
+  ]
+
+  tick
+end
+```
+
+Monitor - turtle with message - count turtles with [message?]
+
+Plot - turtle with message - plot count turtles with [message?]
+
 
 <br>
