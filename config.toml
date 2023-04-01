@@ -17,7 +17,7 @@ theme = "FixIt"
   # 网站描述
   description = "探索 记录 分享"
   # 网站关键词
-  keywords = ["YingLin", "YingLin储物柜"]
+  keywords = ["YingLin", "YingLin_isyl"]
   # 网站默认主题样式 ("light", "dark", "auto")
   defaultTheme = "auto"
   # 公共 git 仓库路径，仅在 enableGitInfo 设为 true 时有效
@@ -82,7 +82,7 @@ theme = "FixIt"
       # LOGO 的 URL
       logo = ""
       # 标题名称
-      name = "YingLin"
+      name = "YingLin_isyl"
       # 你可以在名称（允许 HTML 格式）之前添加其他信息，例如图标
       pre = ""
       # 你可以在名称（允许 HTML 格式）之后添加其他信息，例如图标
