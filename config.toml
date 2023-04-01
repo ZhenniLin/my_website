@@ -92,7 +92,7 @@ theme = "FixIt"
     #  页面头部导航栏副标题配置
     [params.header.subtitle]
       # 副标题名称
-      name = "储物柜"
+      name = ""
       # 是否为副标题显示打字机动画
       typeit = false
 
@@ -154,7 +154,7 @@ theme = "FixIt"
       # 主页显示头像的 URL
       avatarURL = "https://s2.loli.net/2022/02/27/8GojZsqyrV3gD14.png"
       #  主页显示的网站标题（支持 HTML 格式）
-      title = "YingLin 储物柜"
+      title = "YingLin notes"
       # 主页显示的网站副标题
       subtitle = "Calm down for a minute and read"
       # 是否为副标题显示打字机动画
