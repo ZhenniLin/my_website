@@ -1,39 +1,43 @@
----
-title: "建立摄影网站-home总结"
+b---
+title: "建立摄影网站-home 总结"
 subtitle: ""
 date: 2023-04-05
 draft: false
 author: ""
 authorLink: ""
-description: "主页面一些css相关点总结"
+description: "主页面一些 css 相关点总结"
 keywords: ""
 license: ""
 comment: false
 weight: 0
 
 tags:
-  - css
-categories:
-  - css
+
+- css
+  categories:
+- css
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
 
 summary: ""
 resources:
-  - name: featured-image
-    src: featured-image.jpg
-  - name: featured-image-preview
-    src: featured-image-preview.jpg
+
+- name: featured-image
+  src: featured-image.jpg
+- name: featured-image-preview
+  src: featured-image-preview.jpg
 
 toc:
-  enable: true
+enable: true
 math:
-  enable: false
+enable: false
 lightgallery: false
 seo:
-  images: []
+images: []
+
 # See details front matter: /theme-documentation-content/#front-matter
+
 ---
 
 <!--more-->
@@ -62,6 +66,8 @@ seo:
 
 - value `initial-scale=1` instructs browsers to establish a 1:1 relationship between CSS pixels and device-independent pixels regardless of device orientation, and allows the page to take advantage of the full landscape width
 
+</br>
+
 ### Ensure an accessible viewport
 
 - `minimum-scale`
@@ -69,6 +75,8 @@ seo:
 - `user-scalable`
 
 --> When set, these can disable the user's ability to zoom the viewport, potentially causing accessibility issues. Therefore we would not recommend using these attributes
+
+</br>
 
 ### Size to centent to the viewport
 
@@ -93,6 +101,8 @@ img {
 - By using **percentages for the widths**, the columns always remain a certain percentage of the container. This means that the columns become narrower, rather than creating a scrollbar
 
 - Modern CSS layout techniques such as **Flexbox, Grid Layout, and Multicol** make the creation of these flexible grids much easier
+
+</br>
 
 ### Use CSS media queries for responsiveness
 
@@ -123,6 +133,8 @@ img {
 - `pointer`
 - `any-hover`
 - `any-pointer`
+
+</br>
 
 ### How to choose breakpoints
 
@@ -177,6 +189,8 @@ img {
 }
 ```
 
+</br>
+
 ### Optimize text for reading
 
 Classic readability theory suggests that an ideal column should contain 70 to 80 characters per line (about 8 to 10 words in English). Thus, each time the width of a text block grows past about 10 words, consider adding a breakpoint.
@@ -194,6 +208,8 @@ Classic readability theory suggests that an ideal column should contain 70 to 80
   }
 }
 ```
+
+</br>
 
 ## 固定侧边栏
 
@@ -263,10 +279,14 @@ Classic readability theory suggests that an ideal column should contain 70 to 80
 }
 ```
 
+</br>
+
 ## 匹配 rem 到 px
 
 - vscode plugin 可以自动转换 - px to rem
 - chrome 的默认字体 font 为 16px
+
+</br>
 
 ## flex 一些写法意思
 
@@ -332,6 +352,8 @@ article:nth-of-type(3) {
 
 - 表示 content-container 尺寸有空余空间不放大不会收缩，并且在分配多余空间之前，项目占据的主轴空间（main size）为 40rem
 
+</br>
+
 ## background-img 自适应
 
 ```css
@@ -345,3 +367,5 @@ article:nth-of-type(3) {
   background-position: center;
 }
 ```
+
+</br>
