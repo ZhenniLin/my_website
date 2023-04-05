@@ -38,9 +38,9 @@ seo:
 
 <!--more-->
 
-# Responsive web design - basic
+## Responsive web design - basic
 
-## Set the viewpoint
+### Set the viewpoint
 
 - 在 head 必须有 meta viewport tag -> give the browser instructions on how to control the page's dimensions and scaling
 
@@ -62,7 +62,7 @@ seo:
 
 - value `initial-scale=1` instructs browsers to establish a 1:1 relationship between CSS pixels and device-independent pixels regardless of device orientation, and allows the page to take advantage of the full landscape width
 
-## Ensure an accessible viewport
+### Ensure an accessible viewport
 
 - `minimum-scale`
 - `maximum-scale`
@@ -70,9 +70,9 @@ seo:
 
 --> When set, these can disable the user's ability to zoom the viewport, potentially causing accessibility issues. Therefore we would not recommend using these attributes
 
-## Size to centent to the viewport
+### Size to centent to the viewport
 
-### imgaes
+#### imgaes
 
 ```css
 img {
@@ -88,13 +88,13 @@ img {
     - max-width:100% : 如果 img 宽度大于 div 宽度，img 就显示 div100%宽度，否则就显示 img 自身的宽度
     - 很多适合 width 和 max-width 是配合使用的：比如设置一个标签，`width` 是（父元素的）`80%`但是 `max-width` 不能超过`1200px`，那么这个标签就有了一个最基本的可缩放特性
 
-### layout
+#### layout
 
 - By using **percentages for the widths**, the columns always remain a certain percentage of the container. This means that the columns become narrower, rather than creating a scrollbar
 
 - Modern CSS layout techniques such as **Flexbox, Grid Layout, and Multicol** make the creation of these flexible grids much easier
 
-## Use CSS media queries for responsiveness
+### Use CSS media queries for responsiveness
 
 ```
 @media print {
@@ -104,7 +104,7 @@ img {
 
 - For responsive web design, we are typically querying the *features* of the device in order to provide a different layout for smaller screens, or when we detect that our visitor is using a touchscreen
 
-### media queries based on viewport size
+#### media queries based on viewport size
 
 - `width` (`min-width`, `max-width`)
 - `height` (`min-height`, `max-height`)
@@ -117,16 +117,16 @@ img {
   - 宽高比属性被指定为 ratio 值来代表 viewport 的宽高比
   - 其为一个范围，这意味着你可以使用  **`min-aspect-ratio`**  和  **`max-aspect-ratio`**  分别查询最小和最大的值
 
-### media queries based on device capability
+#### media queries based on device capability
 
 - `hover`
 - `pointer`
 - `any-hover`
 - `any-pointer`
 
-## How to choose breakpoints
+### How to choose breakpoints
 
-### pick major breakpoints by starting small, then working up
+#### pick major breakpoints by starting small, then working up
 
 - Design the content to fit on a small screen size first, then expand the screen until a breakpoint becomes necessary. This allows you to optimize breakpoints based on content and maintain the least number of breakpoints possible
 
@@ -142,7 +142,7 @@ img {
 
 - Inside the media query for a `max-width` of `600px`, add the CSS which is only for small screens. Inside the media query for a `min-width` of `601px` add CSS for larger screens
 
-### pick minor breakpoints when necessary
+#### pick minor breakpoints when necessary
 
 - 由小至大
 
@@ -177,7 +177,7 @@ img {
 }
 ```
 
-## Optimize text for reading
+### Optimize text for reading
 
 Classic readability theory suggests that an ideal column should contain 70 to 80 characters per line (about 8 to 10 words in English). Thus, each time the width of a text block grows past about 10 words, consider adding a breakpoint.
 
@@ -195,7 +195,7 @@ Classic readability theory suggests that an ideal column should contain 70 to 80
 }
 ```
 
-# 固定侧边栏
+## 固定侧边栏
 
 ![Screenshot 2023-04-05 at 1.52.04 PM.png](https://s2.loli.net/2023/04/05/oC8WUHTy43phMba.png)
 
@@ -263,14 +263,14 @@ Classic readability theory suggests that an ideal column should contain 70 to 80
 }
 ```
 
-# 匹配 rem 到 px
+## 匹配 rem 到 px
 
 - vscode plugin 可以自动转换 - px to rem
 - chrome 的默认字体 font 为 16px
 
-# flex 一些写法意思
+## flex 一些写法意思
 
-## flex 项目的动态尺寸
+### flex 项目的动态尺寸
 
 现在让我们回到第一个例子，看看是如何控制 flex 项占用空间的比例的
 
@@ -318,7 +318,7 @@ article:nth-of-type(3) {
 
 - 这表示“每个 flex 项将**首先给出 200px 的可用空间**，然后，**剩余的可用空间将根据分配的比例共享**”
 
-## flex 三项简写
+### flex 三项简写
 
 - flex-grow / flex shrink / flex-basis 简写
 
@@ -332,7 +332,7 @@ article:nth-of-type(3) {
 
 - 表示 content-container 尺寸有空余空间不放大不会收缩，并且在分配多余空间之前，项目占据的主轴空间（main size）为 40rem
 
-# background-img 自适应
+## background-img 自适应
 
 ```css
 /* 元素是div */
