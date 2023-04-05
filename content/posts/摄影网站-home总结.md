@@ -36,6 +36,8 @@ seo:
 # See details front matter: /theme-documentation-content/#front-matter
 ---
 
+<!--more-->
+
 # Responsive web design - basic
 
 ## Set the viewpoint
