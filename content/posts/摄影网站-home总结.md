@@ -1,30 +1,30 @@
 ---
-title: "建立摄影网站-home 总结"
+title: "建立摄影网站 home 总计"
 subtitle: ""
-date: 2023-04-05
+date: 2022-04-03
 draft: false
 author: ""
 authorLink: ""
-description: "主页面一些 css 相关点总结"
+description: "一些css相关点"
 keywords: ""
 license: ""
 comment: false
 weight: 0
 
 tags:
-- css
-  categories:
-- css
+  - css
+categories:
+  - css
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
 
 summary: ""
 resources:
-- name: featured-image
-  src: featured-image.jpg
-- name: featured-image-preview
-  src: featured-image-preview.jpg
+  - name: featured-image
+    src: featured-image.jpg
+  - name: featured-image-preview
+    src: featured-image-preview.jpg
 
 toc:
   enable: true
@@ -33,7 +33,6 @@ math:
 lightgallery: false
 seo:
   images: []
-
 # See details front matter: /theme-documentation-content/#front-matter
 ---
 
