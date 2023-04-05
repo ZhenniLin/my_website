@@ -1,5 +1,5 @@
 ---
-title: "建立摄影网站 home 总计"
+title: "建立摄影网站 home 总结"
 subtitle: ""
 date: 2022-04-03
 draft: false
@@ -61,8 +61,6 @@ seo:
 - `width=device-width` instructs the page to match the screen's width in device-independent pixels -> This allows the page to reflow content to match different screen sizes, whether rendered on a small mobile phone or a large desktop monitor
 
 - value `initial-scale=1` instructs browsers to establish a 1:1 relationship between CSS pixels and device-independent pixels regardless of device orientation, and allows the page to take advantage of the full landscape width
-
-</br>
 
 ### Ensure an accessible viewport
 
