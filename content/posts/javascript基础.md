@@ -1,5 +1,5 @@
 ---
-title: " JavaScript基础"
+title: " JavaScript 基础"
 subtitle: ""
 date: 2023-04-09
 draft: false
