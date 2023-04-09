@@ -1358,25 +1358,1143 @@ console.log(num)
 
 ## 8. 对象
 
+- 对象是一个复杂数据类型
+- 其实说是复杂，但是没有很复杂，只不过是存储了一些基本数据类型的一个集合
+  ```javascript
+  var obj = {
+    num: 100,
+    str: "hello world",
+    boo: true,
+  };
+  ```
+- 这里的 `{}` 和函数中的 `{}` 不一样
+- 函数里面的是写代码的，而对象里面是写一些数据的
+- **对象就是一个键值对的集合**
+- `{}` 里面的每一个键都是一个成员
+- 也就是说，我们可以把一些数据放在一个对象里面，那么他们就互不干扰了
+- 其实就是我们准备一个房子，把我们想要的数据放进去，然后把房子的地址给到变量名，当我们需要某一个数据的时候，就可以根据变量名里面存储的地址找到对应的房子，然后去房子里面找到对应的数据
+
+### 创建对象
+
+- 字面量的方式创建一个对象
+
+```javascript
+// 创建一个空对象
+var obj = {};
+
+// 像对象中添加成员
+obj.name = "Jack";
+obj.age = 18;
+```
+
+- 内置构造函数的方式创建对象
+
+```javascript
+// 创建一个空对象
+var obj = new Object();
+
+// 向对象中添加成员
+obj.name = "Rose";
+obj.age = 20;
+```
+
+- `Object` 是 `js` 内置给我们的构造函数，用于创建一个对象使用的
+
+### 数据类型之间存储的区别
+
+- 既然我们区分了**基本数据类型**和**复杂数据类型** ，那么他们之间就一定会存在一些区别
+- 他们最大的区别就是在**存储上的区别** : 我们的存储空间分成两种 **栈** 和 **堆**
+- **栈： 主要存储基本数据类型的内容**
+- **堆： 主要存储复杂数据类型的内容**
+
+#### 基本数据类型在内存中的存储情况
+
+- `var num = 100`，在内存中的存储情况
+- 直接在 **栈空间** 内有存储一个数据
+
+#### 复杂数据类型在内存中的存储情况
+
+- 下面这个 对象 的存储
+  ```javascript
+  var obj = {
+    name: "Jack",
+    age: 18,
+    gender: "男",
+  };
+  ```
+- 复杂数据类型的存储
+
+  1.  在堆里面开辟一个存储空间
+  2.  把数据存储到存储空间内
+  3.  把存储空间的地址赋值给栈里面的变量
+
+- 这就是数据类型之间存储的区别
+
+#### 数据类型之间的比较
+
+- 基本数据类型是 **值** 之间的比较
+  ```javascript
+  var num = 1
+  var str = '1'
+  ​
+  console.log(num == str) // true
+  ```
+- 复杂数据类型是 **地址** 之间的比较
+  ```javascript
+  var obj = { name: 'Jack' }
+  var obj2 = { name: 'Jack' }
+  ​
+  console.log(obj == obj2) // false
+  ```
+  - 因为我们创建了两个对象，那么就会在 堆空间 里面开辟两个存储空间存储数据（两个地址）
+  - 虽然存储的内容是一样的，那么也是两个存储空间，两个地址
+  - 复杂数据类型之间就是地址的比较，所以 `obj` 和 `obj2` 两个变量的地址不一样
+  - 所以我们得到的就是 `false`
+
 </br>
 
 ## 9. 数组
+
+- 什么是数组？
+- 字面理解就是 **数字的组合**
+- 其实不太准确，准确的来说数组是一个 **数据的集合**
+- 也就是我们把一些数据放在一个盒子里面，按照顺序排好
+
+  `[1, 2, 3, 'hello', true, false]`
+
+- 这个东西就是一个数组，存储着一些数据的集合
+
+### 数据类型分类
+
+- `number` / `string` / `boolean` / `undefined` / `null` / `object` / `function` / `array` / ...
+- 数组也是数据类型中的一种
+- 我们简单的把所有数据类型分为两个大类 **基本数据类型** 和 **复杂数据类型**
+- 基本数据类型： `number` / `string` / `boolean` / `undefined` / `null`
+- 复杂数据类型： `object` / `function` / `array` / ...
+
+### 创建一个数组
+
+- 数组就是一个 `[]`
+- 在 `[]` 里面存储着各种各样的数据，按照顺序依次排好
+
+#### 字面量创建一个数组
+
+- 直接使用 `[]` 的方式创建一个数组
+
+```javascript
+// 创建一个空数组
+
+var arr1 = [];
+
+// 创建一个有内容的数组
+
+var arr2 = [1, 2, 3];
+```
+
+#### 内置构造函数创建数组
+
+- 使用 `js` 的内置构造函数 `Array` 创建一个数组
+
+```javascript
+// 创建一个空数组
+var arr1 = new Array();
+
+// 创建一个长度为 10 的数组
+var arr2 = new Array(10);
+
+// 创建一个有内容的数组
+var arr3 = new Array(1, 2, 3);
+```
+
+### 数组的 length
+
+- `length`: 长度的意思
+- `length` 就是表示数组的长度，数组里面有多少个成员，`length` 就是多少
+
+```javascript
+// 创建一个数组
+
+var arr = [1, 2, 3];
+
+console.log(arr.length); // 3
+```
+
+### 数组的索引
+
+- 索引，也叫做下标，是指一个数据在数组里面排在第几个的位置
+- 注意： **在所有的语言里面，索引都是从 0 开始的**
+- 在 `js` 里面也一样，数组的索引从 0 开始
+  ```javascript
+  // 创建一个数组
+  var arr = ["hello", "world"];
+  ```
+- 上面这个数组中，**第 0 个** 数据就是字符串 `hello`，**第 1 个** 数据就是字符串 `world`
+- 想获取数组中的第几个就使用 `数组[索引]` 来获取
+  ```javascript
+  var arr = ['hello', 'world']
+  ​
+  console.log(arr[0]) // hello
+  console.log(arr[1]) // world
+  ```
+
+````
+
+### 数组的排序
+
+#### 冒泡排序
+
+-   先遍历数组，让挨着的两个进行比较，如果前一个比后一个大，那么就把两个换个位置
+
+-   数组遍历一遍以后，那么最后一个数字就是最大的那个了
+
+-   然后进行第二遍的遍历，还是按照之前的规则，第二大的数字就会跑到倒数第二的位置
+
+-   以此类推，最后就会按照顺序把数组排好了
+
+1.  我们先来准备一个乱序的数组
+
+    `var arr = [3, 1, 5, 6, 4, 9, 7, 2, 8]`
+
+    -   接下来我们就会用代码让数组排序
+
+2.  先不着急循环，先来看数组里面内容换个位置
+    ```javascript
+    // 假定我现在要让数组中的第 0 项和第 1 项换个位置
+    // 需要借助第三个变量
+    var tmp = arr[0]
+    arr[0] = arr[1]
+    arr[1] = tmp
+    ```
+3.  第一次遍历数组，把最大的放到最后面去
+    ```javascript
+    for (var i = 0; i < arr.length; i++) {
+      // 判断，如果数组中的当前一个比后一个大，那么两个交换一下位置
+      if (arr[i] > arr[i + 1]) {
+        var tmp = arr[i]
+        arr[i] = arr[i + 1]
+        arr[i + 1] = tmp
+      }
+    }
+    ​
+    // 遍历完毕以后，数组就会变成 [3, 1, 5, 6, 4, 7, 2, 8, 9]
+
+    -   第一次结束以后，数组中的最后一个，就会是最大的那个数字
+
+    -   然后我们把上面的这段代码执行多次。数组有多少项就执行多少次
+     ```
+4.  按照数组的长度来遍历多少次
+    ```javascript
+    for (var j = 0; j < arr.length; j++) {
+      for (var i = 0; i < arr.length; i++) {
+        // 判断，如果数组中的当前一个比后一个大，那么两个交换一下位置
+        if (arr[i] > arr[i + 1]) {
+          var tmp = arr[i]
+          arr[i] = arr[i + 1]
+          arr[i + 1] = tmp
+        }
+      }
+    }
+    ​
+    // 结束以后，数组就排序好了
+    ```
+5.  给一些优化
+
+    -   想象一个问题，假设数组长度是 9，第八次排完以后
+
+    -   后面八个数字已经按照顺序排列好了，剩下的那个最小的一定是在最前面
+
+    -   那么第九次就已经没有意义了，因为最小的已经在最前面了，不会再有任何换位置出现了
+
+    -   那么我们第九次遍历就不需要了，所以我们可以减少一次
+        ```javascript
+        for (var j = 0; j < arr.length - 1; j++) {
+          for (var i = 0; i < arr.length; i++) {
+            // 判断，如果数组中的当前一个比后一个大，那么两个交换一下位置
+            if (arr[i] > arr[i + 1]) {
+              var tmp = arr[i]
+              arr[i] = arr[i + 1]
+              arr[i + 1] = tmp
+            }
+          }
+        }
+        ```
+    -   第二个问题，第一次的时候，已经把最大的数字放在最后面了
+
+    -   那么第二次的时候，其实倒数第二个和最后一个就不用比了
+
+    -   因为我们就是要把倒数第二大的放在倒数第二的位置，即使比较了，也不会换位置
+
+    -   第三次就要倒数第三个数字就不用再和后两个比较了
+
+    -   以此类推，那么其实每次遍历的时候，就遍历 `当前次数 - 1` 次
+        ```javascript
+        for (var j = 0; j < arr.length - 1; j++) {
+          for (var i = 0; i < arr.length - 1 - j; i++) {
+            // 判断，如果数组中的当前一个比后一个大，那么两个交换一下位置
+            if (arr[i] > arr[i + 1]) {
+              var tmp = arr[i]
+              arr[i] = arr[i + 1]
+              arr[i + 1] = tmp
+            }
+          }
+        }
+		```
+
+6.  至此，一个冒泡排序就完成了
+
+![IMG_976AD85F959A-1.jpeg](https://s2.loli.net/2023/03/14/ro3cmvqTH9xnCFR.jpg)
+
+
+#### 选择排序
+
+-   先假定数组中的第 0 个就是最小的数字的索引
+
+-   然后遍历数组，只要有一个数字比我小，那么就替换之前记录的索引
+
+-   知道数组遍历结束后，就能找到最小的那个索引，然后让最小的索引换到第 0 个的位置
+
+-   再来第二趟遍历，假定第 1 个是最小的数字的索引
+
+-   在遍历一次数组，找到比我小的那个数字的索引
+
+-   遍历结束后换个位置
+
+-   依次类推，也可以把数组排序好
+
+1.  准备一个数组
+
+    `var arr = [3, 1, 5, 6, 4, 9, 7, 2, 8]`
+
+2.  假定数组中的第 0 个是最小数字的索引
+
+    `var minIndex = 0`
+
+3.  遍历数组，判断，只要数字比我小，那么就替换掉原先记录的索引
+    ```javascript
+    var minIndex = 0
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] < arr[minIndex]) {
+        minIndex = i
+      }
+    }
+    ​
+    // 遍历结束后找到最小的索引
+    // 让第 minIndex 个和第 0 个交换
+    var tmp = arr[minIndex]
+    arr[minIndex] = arr[0]
+    arr[0] = tmp
+    ```
+
+4. 按照数组的长度重复执行上面的代码
+
+```javascript
+for (var j = 0; j < arr.length; j++) {
+  // 因为第一遍的时候假定第 0 个，第二遍的时候假定第 1 个
+  // 所以我们要假定第 j 个就行
+  var minIndex = j
+
+  // 因为之前已经把最小的放在最前面了，后面的循环就不需要判断前面的了
+  // 直接从 j + 1 开始
+  for (var i = j + 1; i < arr.length; i++) {
+    if (arr[i] < arr[minIndex]) {
+      minIndex = i
+    }
+  }
+
+  // 遍历结束后找到最小的索引
+  // 第一堂的时候是和第 0 个交换，第二趟的时候是和第 1 个交换
+  // 我们直接和第 j 个交换就行
+  var tmp = arr[minIndex]
+  arr[minIndex] = arr[j]
+  arr[j] = tmp
+}
+````
+
+5. 一些优化
+
+- 和之前一样，倒数第二次排序完毕以后，就已经排好了，最后一次没有必要了
+
+```javascript
+for (var j = 0; j < arr.length - 1; j++) {
+  var minIndex = j;
+
+  for (var i = j + 1; i < arr.length; i++) {
+    if (arr[i] < arr[minIndex]) {
+      minIndex = i;
+    }
+  }
+
+  var tmp = arr[minIndex];
+  arr[minIndex] = arr[j];
+  arr[j] = tmp;
+}
+```
+
+- 在交换变量之前，可以判断一下，如果我们遍历后得到的索引和当前的索引一直
+- 那么就证明当前这个就是目前最小的，那么就没有必要交换
+- 做一我们要判断，最小作引和当前作引不一样的时候，才交换
+
+```javascript
+for (var j = 0; j < arr.length - 1; j++) {
+  var minIndex = j;
+
+  for (var i = j + 1; i < arr.length; i++) {
+    if (arr[i] < arr[minIndex]) {
+      minIndex = i;
+    }
+  }
+
+  if (minIndex !== j) {
+    var tmp = arr[minIndex];
+    arr[minIndex] = arr[j];
+    arr[j] = tmp;
+  }
+}
+```
+
+### 数组的常用方法
+
+- 数组是一个复杂数据类型，我们在操作它的时候就不能再想基本数据类型一样操作了
+- 比如我们想改变一个数组
+
+```javascript
+// 创建一个数组
+
+var arr = [1, 2, 3];
+
+// 我们想把数组变成只有 1 和 2
+
+arr = [1, 2];
+```
+
+- 这样肯定是不合理，因为这样不是在改变之前的数组
+
+- 相当于心弄了一个数组给到 `arr` 这个变量了
+
+- 相当于把 `arr` 里面存储的地址给换了，也就是把存储空间换掉了，而不是在之前的空间里面修改
+
+- 所以我们就需要借助一些方法，在不改变存储空间的情况下，把存储空间里面的数据改变了
+
+#### push
+
+- `push` 是用来在数组的末尾追加一个元素
+
+```javascript
+    var arr = [1, 2, 3]
+    ​
+    // 使用 push 方法追加一个元素在末尾
+    arr.push(4)
+    ​
+    console.log(arr) // [1, 2, 3, 4]
+```
+
+#### pop
+
+- `pop` 是用来删除数组末尾的一个元素
+  ```javascript
+  var arr = [1, 2, 3]
+  ​
+  // 使用 pop 方法删除末尾的一个元素
+  arr.pop()
+  ​
+  console.log(arr) // [1, 2]
+  ```
+
+#### unshift
+
+- `unshift` 是在数组的最前面添加一个元素
+  ```javascript
+  var arr = [1, 2, 3]
+  ​
+  // 使用 unshift 方法想数组的最前面添加一个元素
+  arr.unshift(4)
+  ​
+  console.log(arr) // [4, 1, 2, 3]
+  ```
+
+#### shift
+
+- `shift` 是删除数组最前面的一个元素
+  ```javascript
+  var arr = [1, 2, 3]
+  ​
+  // 使用 shift 方法删除数组最前面的一个元素
+  arr.shift()
+  ​
+  console.log(arr) // [2, 3]
+  ```
+
+#### splice
+
+- `splice` 是截取数组中的某些内容，按照数组的索引来截取
+- 语法： `splice(从哪一个索引位置开始，截取多少个，替换的新元素)` （第三个参数可以不写）
+
+```javascript
+var arr = [1, 2, 3, 4, 5];
+
+// 使用 splice 方法截取数组
+arr.splice(1, 2);
+
+console.log(arr); // [1, 4, 5]
+```
+
+- `arr.splice(1, 2)` 表示从索引 1 开始截取 2 个内容
+- 第三个参数没有写，就是没有新内容替换掉截取位置
+
+```javascript
+var arr = [1, 2, 3, 4, 5];
+
+// 使用 splice 方法截取数组
+arr.splice(1, 2, "我是新内容");
+
+console.log(arr); // [1, '我是新内容', 4, 5]
+```
+
+- `arr.splice(1, 2, '我是新内容')` 表示从索引 1 开始截取 2 个内容
+- 然后用第三个参数把截取完空出来的位置填充
+
+#### reverse
+
+- `reverse` 是用来反转数组使用的
+
+```javascript
+var arr = [1, 2, 3];
+
+// 使用 reverse 方法来反转数组
+arr.reverse();
+
+console.log(arr); // [3, 2, 1]
+```
+
+#### sort
+
+- `sort` 是用来给数组排序的
+
+```javascript
+var arr = [2, 3, 1];
+
+// 使用 sort 方法给数组排序
+arr.sort();
+
+console.log(arr); // [1, 2, 3]
+```
+
+#### contact
+
+- `concat` 是把多个数组进行拼接
+- 和之前的方法有一些不一样的地方，就是 `concat` 不会改变原始数组，而是返回一个新的数组
+
+```javascript
+var arr = [1, 2, 3];
+
+// 使用 concat 方法拼接数组
+
+var newArr = arr.concat([4, 5, 6]);
+
+console.log(arr); // [1, 2, 3]
+
+console.log(newArr); // [1, 2, 3, 4, 5, 6]
+```
+
+- 注意： **`concat` 方法不会改变原始数组**
+
+#### join
+
+- `join` 是把数组里面的每一项内容链接起来，变成一个字符串
+- 可以自己定义每一项之间链接的内容 `join(要以什么内容链接)`
+- 不会改变原始数组，而是把链接好的字符串返回
+
+```javascript
+var arr = [1, 2, 3];
+
+// 使用 join 链接数组
+
+var str = arr.join("-");
+
+console.log(arr); // [1, 2, 3]
+
+console.log(str); // 1-2-3
+```
+
+- 注意： **join 方法不会改变原始数组，而是返回链接好的字符串**
+
+#### indexOf
+
+- `indexOf` 用来找到数组中某一项的索引
+- 语法： `indexOf(你要找的数组中的项)`
+
+```javascript
+var arr = [1, 2, 3, 4, 5];
+
+// 使用 indexOf 超找数组中的某一项
+var index = arr.indexOf(3);
+
+console.log(index); // 2
+```
+
+- 我们要找的是数组中值为 3 的那一项
+- 返回的就是值为 3 的那一项在该数组中的索引
+
+- 如果你要找的内容在数组中没有，那么就会返回 -1
+
+```javascript
+var arr = [1, 2, 3, 4, 5];
+
+// 使用 indexOf 超找数组中的某一项
+var index = arr.indexOf(10);
+
+console.log(index); // -1
+```
+
+#### forEach
+
+- 和 `for` 循环一个作用，就是用来遍历数组的
+- 语法：`arr.forEach(function (item, index, arr) {})`
+
+```javascript
+var arr = [1, 2, 3];
+
+// 使用 forEach 遍历数组
+
+arr.forEach(function (item, index, arr) {
+  // item 就是数组中的每一项
+
+  // index 就是数组的索引
+
+  // arr 就是原始数组
+
+  console.log("数组的第 " + index + " 项的值是 " + item + "，原始数组是", arr);
+});
+```
+
+- `forEach()` 的时候传递的那个函数，会根据数组的长度执行
+- 数组的长度是多少，这个函数就会执行多少回
+
+#### map
+
+- 和 `forEach` 类似，只不过可以对数组中的每一项进行操作，返回一个新的数组
+
+```javascript
+var arr = [1, 2, 3];
+
+// 使用 map 遍历数组
+var newArr = arr.map(function (item, index, arr) {
+  // item 就是数组中的每一项
+  // index 就是数组的索引
+  // arr 就是原始数组
+  return item + 10;
+});
+
+console.log(newArr); // [11, 12, 13]
+```
+
+#### filter
+
+- 和 `map` 的使用方式类似，按照我们的条件来筛选数组
+- 把原始数组中满足条件的筛选出来，组成一个新的数组返回
+
+```javascript
+var arr = [1, 2, 3];
+
+// 使用 filter 过滤数组
+var newArr = arr.filter(function (item, index, arr) {
+  // item 就是数组中的每一项
+  // index 就是数组的索引
+  // arr 就是原始数组
+  return item > 1;
+});
+
+console.log(newArr); // [2, 3]
+```
+
+- 我们设置的条件就是 `> 1`
+
+- 返回的新数组就会是原始数组中所有 `> 1` 的项
 
 </br>
 
 ## 10. 字符串
 
+### 创建字符串
+
+- 我们创建字符串也分为两种方法 **字面量** 和 **构造函数**
+- 字面量：
+
+  `var str = 'hello'`
+
+- 构造函数创建
+
+  `var str = new String('hello')`
+
+### 字符集
+
+#### ASCII 字符集
+
+- 我们都知道，计算机只能存储 `0101010` 这样的二进制数字
+- 那么我们的 `a ~ z` / `A ~ Z` / `$` / `@` /… 之类的内容也有由二进制数字组成的
+- 我们可以简单的理解为， `a ~ z` / `A ~ Z` / `$` / `@` /… 之类的内容都有一个自己的编号，然后在计算机存储的时候，是存储的这些编号，我们看的时候，也是通过这些编号在解析成我们要看到的内容给我们看到
+
+#### unicode 编码
+
+- 我们看到了，`ASCII` 只有这 `128` 个字符的编码结构
+- 但是因为 `ASCII` 出现的比较早，而且是美国发明的，早先时候这些内容就够用了
+- 因为存储一些英文的内容，传递一些英文的文章什么的都够用了
+- 那么对于这个世界来说肯定是不够用的
+- 因为我们的汉字没有办法存储，包括一些其他国家的语言也没有办法存储
+- 所以就出现了 `unicode` 编码，也叫（万国码，统一码）
+- `unicode` 对照表就是一个和 `ASCII` 一样的对照表，只不过变得很大很大，因为存储的内容特别的多
+- 而且包含了世界上大部分国家的文字，所以我们的文字和字符现在在存储的时候，都是按照 `unicode` 编码转换成数字进行存储
+- 我们的 `UTF-8` 就是一种 `8 位的 unicode` 字符集
+
+### 字符串的用法
+
+- 我们操作字符串，也有一堆的方法来帮助我们操作
+- 字符串和数组有一个一样的地方，也是按照索引来排列的
+
+#### charAt
+
+- `charAt(索引)` 是找到字符串中指定索引位置的内容返回
+
+```javascript
+var str = "Jack";
+
+// 使用 charAt 找到字符串中的某一个内容
+var index = str.charAt(2);
+
+console.log(index); // c
+```
+
+    - 因为字符串也是按照索引进行排列的，也是同样从 0 开始
+    - 所以索引 2 的位置就是 `c`
+
+- 如果没有对应的索引，那么就会返回 空字符串
+
+```javascript
+var str = "Jack";
+
+// 使用 charAt 找到字符串中的某一个内容
+var index = str.charAt(10);
+
+console.log(index); // ''
+```
+
+    - 这个字符串根本没有索引 10 的位置
+    - 所以就会返回一个空字符串 `''`
+
+#### charCodeAt
+
+- `charCodeAt(索引)` 就是返回对应索引位置的 `unicode` 编码
+
+```javascript
+var str = "Jack";
+
+// 使用 charAt 找到字符串中的某一个内容
+var index = str.charCodeAt(0);
+
+console.log(index); // 74
+```
+
+    - 因为 `J` 在 `unicode` 对照表里面存储的是 74，所以就会返回 74
+
+#### indexOf
+
+- `indexOf` 就是按照字符找到对应的索引
+
+```javascript
+var str = "Jack";
+
+// 使用 indexOf 找到对应的索引
+var index = str.indexOf("J");
+
+console.log(index); // 0
+```
+
+    - 因为字符 `J` 在字符串 `Jack` 中的索引位置是 0
+    - 所以会返回 0
+
+#### substring
+
+- `substring` 是用来截取字符串使用的
+- 语法： `substring(从哪个索引开始，到哪个索引截止)`，包含开始索引，不包含结束索引
+
+```javascript
+var str = "hello";
+//         01234
+
+// 使用 substring 截取字符串
+var newStr = str.substring(1, 3);
+
+console.log(newStr); // el
+```
+
+#### substr
+
+- `substr` 也是用来截取字符串的
+- 语法：`substr(从哪个索引开始，截取多少个)`
+
+```javascript
+var str = "hello";
+//         01234
+
+// 使用 substr 截取字符串
+var newStr = str.substr(1, 3);
+
+console.log(newStr); // ell
+```
+
+- 这个方法和 `substring` 不一样的是，第二个参数是截取多少个
+- 从索引 1 开始，截取 3 个，所以得到的是 `ell`
+
+#### toLowerCase 和 toUpperCase
+
+- 这两个方法分别使用用来给字符串转成 **小写字母** 和 **大写字母** 的
+
+```javascript
+var str = hello;
+
+// 使用 toUpperCase 转换成大写
+var upper = str.toUpperCase();
+
+console.log(upper); // HELLO
+
+// 使用 toLowerCase 转换成小写
+var lower = upper.toLowerCase();
+
+console.log(lower); // hello
+```
+
 </br>
 
 ## 11. Math
+
+- Math 是 js 的一个内置对象，提供了一堆的方法帮助我们操作 **数字**
+
+### random
+
+- `Math.random()` 这个方法是用来生成一个 `0 ~ 1` 之间的随机数
+- 每次执行生成的数字都不一样，但是一定是 `0 ~ 1` 之间的
+- **生成的数字包含 0 ，但是不包含 1**
+
+```javascript
+var num = Math.random();
+console.log(num); // 得到一个随机数
+```
+
+### round
+
+- `Math.round()` 是将一个小数 **四舍五入** 变成一个整数
+
+```javascript
+var num = 10.1;
+console.log(Math.round(num)); // 10
+
+var num2 = 10.6;
+console.log(Math.round(num2)); // 11
+```
+
+### abs
+
+- `Math.abs()` 是返回一个数字的 **绝对值**
+
+```javascript
+var num = -10;
+console.log(math.abs(num)); // 10
+```
+
+### ceil
+
+- `Math.ceil()` 是将一个小数 **向上取整** 得到的整数
+
+```javascript
+var num = 10.1;
+console.log(Math.ceil(num)); // 11
+
+var num2 = 10.9;
+console.log(Math.ceil(num2)); // 11
+```
+
+### floor
+
+- `Math.floor()` 是将一个小数 **向下取整** 的到的整数
+
+```javascript
+var num = 10.1;
+console.log(Math.floor(num)); // 10
+
+var num2 = 10.9;
+console.log(Math.floor(num2)); // 10
+```
+
+### max
+
+- `Math.max()` 得到的是你传入的几个数字之中 **最大** 的那个数字
+
+```javascript
+console.log(Math.max(1, 2, 3, 4, 5)); // 5
+```
+
+### min
+
+- `Math.min()` 得到的是你传入的几个数字之中 **最小** 的那个数字
+
+```javascript
+console.log(Math.min(1, 2, 3, 4, 5)); // 1
+```
+
+### PI
+
+- `Math.PI` 得到的是 `π` 的值，也就是 `3.1415936...`
+
+```javascript
+console.log(Math.PI); // 3.141592653589793
+```
+
+- 因为计算机的计算精度问题，只能得到小数点后 15 位
+- **使用 Math.PI 的时候，是不需要加 () 的**
 
 </br>
 
 ## 12. Date
 
+- `js` 提供的内置构造函数，专门用来获取时间的
+
+### new Date()
+
+- `new Date()` 在不传递参数的情况下是默认返回当前时间
+
+```javascript
+var time = new Date();
+
+console.log(time); // 当前时间 Fri Mar 01 2019 13:11:23 GMT+0800 (中国标准时间)
+```
+
+- `new Date()` 在传入参数的时候，可以获取到一个你传递进去的时间
+
+```javascript
+var time = new Date("2019-03-03 13:11:11");
+console.log(time); // Sun Mar 03 2019 13:11:11 GMT+0800 (中国标准时间)
+```
+
+- `new Date()` 传递的参数有多种情况 1. 传递两个数字，第一个表示年，第二个表示月份
+  `javascript
+var time = new Date(2019, 00) // 月份从 0 开始计数，0 表示 1月，11 表示 12月
+console.log(time) // Tue Jan 01 2019 00:00:00 GMT+0800 (中国标准时间)
+	` 2. 传递三个数字，前两个不变，第三个表示该月份的第几天，从 1 到 31
+  `javascript
+var time = new Date(2019, 00, 05) 
+console.log(time) // Sat Jan 05 2019 00:00:00 GMT+0800 (中国标准时间)
+	` 3. 传递四个数字，前三个不变，第四个表示当天的几点，从 0 到 23
+  `javascript
+var time = new Date(2019, 00, 05, 22) 
+console.log(time) // Sat Jan 05 2019 22:00:00 GMT+0800 (中国标准时间)
+	` 4. 传递五个数字，前四个不变，第五个表示的是该小时的多少分钟，从 0 到 59
+  `javascript
+var time = new Date(2019, 00, 05, 22, 33) 
+console.log(time) // Sat Jan 05 2019 22:33:00 GMT+0800 (中国标准时间)
+	` 5. 传递六个数字，前五个不变，第六个表示该分钟的多少秒，从 0 到 59
+  `javascript
+var time = new Date(2019, 00, 05, 22, 33, 55) 
+console.log(time) // Sat Jan 05 2019 22:33:55 GMT+0800 (中国标准时间)
+	` 6. 传入字符串的形式
+  `javascript
+console.log(new Date('2019')) 
+// Tue Jan 01 2019 08:00:00 GMT+0800 (中国标准时间)
+console.log(new Date('2019-02')) 
+// Fri Feb 01 2019 08:00:00 GMT+0800 (中国标准时间)
+console.log(new Date('2019-02-03')) 
+// Sun Feb 03 2019 08:00:00 GMT+0800 (中国标准时间)
+console.log(new Date('2019-02-03 13:')) 
+// Sun Feb 03 2019 13:00:00 GMT+0800 (中国标准时间)
+console.log(new Date('2019-02-03 13:13:')) 
+// Sun Feb 03 2019 13:13:00 GMT+0800 (中国标准时间)
+console.log(new Date('2019-02-03 13:13:13')) 
+// Sun Feb 03 2019 13:13:13 GMT+0800 (中国标准时间)
+	`
+
+### 将日期字符串格式化成指定内容
+
+- 比如我们得到的时间字符串是 `Sun Feb 03 2019 13:13:13 GMT+0800 (中国标准时间)`
+- 我指向得到这个日期中是那一年，我们就要靠截取字符串的形式得到
+- 但是现在 `js` 为我们提供了一系列的方法来得到里面的指定内容
+
+#### getFullYear
+
+- `getFullYear()` 方式是得到指定字符串中的哪一年
+  ```javascript
+  var time = new Date(2019, 03, 03, 08, 00, 22);
+  console.log(time.getFullYear()); // 2019
+  ```
+
+#### getMonth
+
+```javascript
+var time = new Date(2019, 03, 03, 08, 00, 22);
+console.log(time.getMonth()); // 3
+```
+
+- 这里要有一个注意的地方
+- 月份是从 0 开始数的
+- 0 表示 1 月，1 表示 2 月，依此类推
+
+#### getDate
+
+```javascript
+var time = new Date(2019, 03, 03, 08, 00, 22);
+console.log(time.getDate()); // 3
+```
+
+#### getHours
+
+```javascript
+var time = new Date(2019, 03, 03, 08, 00, 22);
+console.log(time.getHours()); // 8
+```
+
+#### getMinutes
+
+```javascript
+var time = new Date(2019, 03, 03, 08, 00, 22);
+console.log(time.getMinutes()); // 0
+```
+
+#### getSeconds
+
+```javascript
+var time = new Date(2019, 03, 03, 08, 00, 22);
+console.log(time.getSeconds()); // 22
+```
+
+#### getDay
+
+- `getDay()` 方法是得到指定字符串当前日期是一周中的第几天（周日是 0，周六是 6）
+
+```javascript
+var time = new Date(2019, 03, 08, 08, 00, 22);
+console.log(time.getDay()); // 1
+```
+
+#### getTime
+
+- `getTime()` 方法是得到执行时间到 `格林威治时间` 的毫秒数
+
+```javascript
+var time = new Date(2019, 03, 08, 08, 00, 22);
+console.log(time.getTime()); // 1554681622000
+```
+
+#### 获取时间差
+
+- 是指获取两个时间点之间相差的时间
+- 在 js 中是不能用时间直接做 减法 的
+- 我们需要一些特殊的操作
+- 在编程的世界里面，有一个特殊的时间，是 `1970年01月01日00时00分00秒`
+- 这个时间我们叫做 `格林威治时间`
+- 所有的编程世界里面，这个时间都是一样的，而且 `格林威治时间` 的数字是 0
+- 从 `格林威治时间` 开始，每经过 1 毫秒，数字就会 + 1
+- 所以我们可以获取到任意一个时间节点到 `格林威治时间` 的毫秒数
+- 然后在用两个毫秒数相减，就能得到两个时间点之间相差的毫秒数
+- 我们在通过这个毫秒数得到准确的时间
+
 </br>
 
 ## 13. 定时器
 
-</br>
+- 在 `js` 里面，有两种定时器，**倒计时定时器** 和 **间隔定时器**
+
+### 倒计时定时器
+
+- 倒计时多少时间以后执行函数
+- 语法： `setTimeout(要执行的函数，多长时间以后执行)`
+- 会在你设定的时间以后，执行函数
+
+```javascript
+var timerId = setTimeout(function () {
+  console.log("我执行了");
+}, 1000);
+console.log(timerId); // 1
 ```
+
+- 时间是按照毫秒进行计算的，1000 毫秒就是 1 秒钟
+- 所以会在页面打开 1 秒钟以后执行函数
+- 只执行一次，就不在执行了
+- 返回值是，当前这个定时器是页面中的第几个定时器
+
+### 间隔定定时器
+
+- 每间隔多少时间就执行一次函数
+- 语法： `setInterval(要执行的函数，间隔多少时间)`
+
+```javascript
+var timerId = setInterval(function () {
+  console.log("我执行了");
+}, 1000);
+```
+
+- 时间和刚才一样，是按照毫秒进行计算的
+- 每间隔 1 秒钟执行一次函数
+- 只要不关闭，会一直执行
+- 返回值是，当前这个定时器是页面中的第几个定时器
+
+### 定时器的返回值
+
+- 设置定时器的时候，他的返回值是部分 `setTimeout` 和 `setInterval` 的
+- 只要有一个定时器，那么就是一个数字
+
+```javascript
+var timerId = setTimeout(function () {
+  console.log("倒计时定时器");
+}, 1000);
+
+var timerId2 = setInterval(function () {
+  console.log("间隔定时器");
+}, 1000);
+
+console.log(timerId); // 1
+console.log(timerId2); // 2
+```
+
+#### 关闭定时器
+
+- 我们刚才提到过一个 `timerId`，是表示这个定时器是页面上的第几个定时器
+- 这个 `timerId` 就是用来关闭定时器的数字
+- 我们有两个方法来关闭定时器 `clearTimeout` 和 `clearInterval`
+
+```javascript
+var timerId = setTimeout(function () {
+  console.log("倒计时定时器");
+}, 1000);
+clearTimeout(timerId);
+
+//=========================
+
+var timerId2 = setInterval(function () {
+  console.log("间隔定时器");
+}, 1000);
+coearInterval(timerId2);
+```
+
+- 关闭以后，定时器就不会在执行了
+
+- 原则上是
+
+  - `clearTimeout` 关闭 `setTimeout`
+
+  - `clearInterval` 关闭 `setInterval`
+
+- 但是其实是可以通用的，他们可以混着使用
+
+```javascript
+var timerId = setTimeout(function () {
+  console.log("倒计时定时器");
+}, 1000);
+// 关闭倒计时定时器
+clearInterval(timerId);
+
+var timerId2 = setInterval(function () {
+  console.log("间隔定时器");
+}, 1000);
+// 关闭间隔定时器
+clearTimeout(timerId2);
+```
+
+</br>
