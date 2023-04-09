@@ -36,6 +36,8 @@ seo:
 # See details front matter: /theme-documentation-content/#front-matter
 ---
 
+<!--more-->
+
 ## 前言
 
 - 自 2009 年以来，Node.js 一直席卷全球。成千上万个系统基于 Node.js 构建，促使开发者在社区宣称“JavaScript 正在吞噬软件”。
