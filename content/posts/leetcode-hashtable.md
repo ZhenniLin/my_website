@@ -5,39 +5,35 @@ date: 2023-04-12
 draft: false
 author: ""
 authorLink: ""
-description: "linkedList 刷题-hashtable(array / hashmap / hashset)"
+description: "linkedList刷题-hashtable(array/hashmap/hashset)"
 keywords: ""
 license: ""
 comment: false
 weight: 0
 
 tags:
-
-- leetcode
-  categories:
-- leetcode
+  - leetcode
+categories:
+  - leetcode
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
 
 summary: ""
 resources:
-
-- name: featured-image
-  src: featured-image.jpg
-- name: featured-image-preview
-  src: featured-image-preview.jpg
+  - name: featured-image
+    src: featured-image.jpg
+  - name: featured-image-preview
+    src: featured-image-preview.jpg
 
 toc:
-enable: true
+  enable: true
 math:
-enable: false
+  enable: false
 lightgallery: false
 seo:
-images: []
-
+  images: []
 # See details front matter: /theme-documentation-content/#front-matter
-
 ---
 
 <!--more-->
